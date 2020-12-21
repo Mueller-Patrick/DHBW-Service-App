@@ -15,6 +15,7 @@
 		CD9FAB8D258EC60600D6D0C5 /* DHBW_Service.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CD9FAB8B258EC60600D6D0C5 /* DHBW_Service.xcdatamodeld */; };
 		CD9FAB98258EC60600D6D0C5 /* DHBW_ServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9FAB97258EC60600D6D0C5 /* DHBW_ServiceTests.swift */; };
 		CD9FABA3258EC60600D6D0C5 /* DHBW_ServiceUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9FABA2258EC60600D6D0C5 /* DHBW_ServiceUITests.swift */; };
+		CDCD721A25912E1200FBF2F5 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCD721925912E1200FBF2F5 /* HomeView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		CD9FAB9E258EC60600D6D0C5 /* DHBW-ServiceUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "DHBW-ServiceUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD9FABA2258EC60600D6D0C5 /* DHBW_ServiceUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DHBW_ServiceUITests.swift; sourceTree = "<group>"; };
 		CD9FABA4258EC60600D6D0C5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CDCD721925912E1200FBF2F5 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,12 +101,10 @@
 		CD9FAB7F258EC60200D6D0C5 /* DHBW-Service */ = {
 			isa = PBXGroup;
 			children = (
-				CD9FAB80258EC60200D6D0C5 /* DHBW_ServiceApp.swift */,
-				CD9FAB82258EC60200D6D0C5 /* ContentView.swift */,
-				CD9FAB84258EC60600D6D0C5 /* Assets.xcassets */,
-				CD9FAB89258EC60600D6D0C5 /* Persistence.swift */,
-				CD9FAB8E258EC60600D6D0C5 /* Info.plist */,
-				CD9FAB8B258EC60600D6D0C5 /* DHBW_Service.xcdatamodeld */,
+				CDCD720F25912D3C00FBF2F5 /* App */,
+				CDCD721025912D4900FBF2F5 /* Views */,
+				CDCD721125912D5400FBF2F5 /* CoreData */,
+				CDCD721225912D6300FBF2F5 /* Supporting Files */,
 				CD9FAB86258EC60600D6D0C5 /* Preview Content */,
 			);
 			path = "DHBW-Service";
@@ -134,6 +134,49 @@
 				CD9FABA4258EC60600D6D0C5 /* Info.plist */,
 			);
 			path = "DHBW-ServiceUITests";
+			sourceTree = "<group>";
+		};
+		CDCD720F25912D3C00FBF2F5 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				CD9FAB80258EC60200D6D0C5 /* DHBW_ServiceApp.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		CDCD721025912D4900FBF2F5 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				CD9FAB82258EC60200D6D0C5 /* ContentView.swift */,
+				CDCD721E25912E1700FBF2F5 /* Tabs */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		CDCD721125912D5400FBF2F5 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				CD9FAB8B258EC60600D6D0C5 /* DHBW_Service.xcdatamodeld */,
+				CD9FAB89258EC60600D6D0C5 /* Persistence.swift */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
+		CDCD721225912D6300FBF2F5 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				CD9FAB8E258EC60600D6D0C5 /* Info.plist */,
+				CD9FAB84258EC60600D6D0C5 /* Assets.xcassets */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		CDCD721E25912E1700FBF2F5 /* Tabs */ = {
+			isa = PBXGroup;
+			children = (
+				CDCD721925912E1200FBF2F5 /* HomeView.swift */,
+			);
+			path = Tabs;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -268,6 +311,7 @@
 				CD9FAB8A258EC60600D6D0C5 /* Persistence.swift in Sources */,
 				CD9FAB83258EC60200D6D0C5 /* ContentView.swift in Sources */,
 				CD9FAB8D258EC60600D6D0C5 /* DHBW_Service.xcdatamodeld in Sources */,
+				CDCD721A25912E1200FBF2F5 /* HomeView.swift in Sources */,
 				CD9FAB81258EC60200D6D0C5 /* DHBW_ServiceApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -429,7 +473,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"DHBW-Service/Preview Content\"";
 				DEVELOPMENT_TEAM = HS7KNT4MZ2;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = "DHBW-Service/Info.plist";
+				INFOPLIST_FILE = "DHBW-Service/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -451,7 +495,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"DHBW-Service/Preview Content\"";
 				DEVELOPMENT_TEAM = HS7KNT4MZ2;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = "DHBW-Service/Info.plist";
+				INFOPLIST_FILE = "DHBW-Service/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
