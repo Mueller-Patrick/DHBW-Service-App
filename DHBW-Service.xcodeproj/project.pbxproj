@@ -16,6 +16,7 @@
 		CD9FAB98258EC60600D6D0C5 /* DHBW_ServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9FAB97258EC60600D6D0C5 /* DHBW_ServiceTests.swift */; };
 		CD9FABA3258EC60600D6D0C5 /* DHBW_ServiceUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9FABA2258EC60600D6D0C5 /* DHBW_ServiceUITests.swift */; };
 		CDCD721A25912E1200FBF2F5 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCD721925912E1200FBF2F5 /* HomeView.swift */; };
+		CDCD72242591316500FBF2F5 /* LocalSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCD72232591316500FBF2F5 /* LocalSettings.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		CD9FABA2258EC60600D6D0C5 /* DHBW_ServiceUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DHBW_ServiceUITests.swift; sourceTree = "<group>"; };
 		CD9FABA4258EC60600D6D0C5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CDCD721925912E1200FBF2F5 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		CDCD72232591316500FBF2F5 /* LocalSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalSettings.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +105,7 @@
 			children = (
 				CDCD720F25912D3C00FBF2F5 /* App */,
 				CDCD721025912D4900FBF2F5 /* Views */,
+				CDCD72222591314000FBF2F5 /* Observables */,
 				CDCD721125912D5400FBF2F5 /* CoreData */,
 				CDCD721225912D6300FBF2F5 /* Supporting Files */,
 				CD9FAB86258EC60600D6D0C5 /* Preview Content */,
@@ -177,6 +180,14 @@
 				CDCD721925912E1200FBF2F5 /* HomeView.swift */,
 			);
 			path = Tabs;
+			sourceTree = "<group>";
+		};
+		CDCD72222591314000FBF2F5 /* Observables */ = {
+			isa = PBXGroup;
+			children = (
+				CDCD72232591316500FBF2F5 /* LocalSettings.swift */,
+			);
+			path = Observables;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -310,6 +321,7 @@
 			files = (
 				CD9FAB8A258EC60600D6D0C5 /* Persistence.swift in Sources */,
 				CD9FAB83258EC60200D6D0C5 /* ContentView.swift in Sources */,
+				CDCD72242591316500FBF2F5 /* LocalSettings.swift in Sources */,
 				CD9FAB8D258EC60600D6D0C5 /* DHBW_Service.xcdatamodeld in Sources */,
 				CDCD721A25912E1200FBF2F5 /* HomeView.swift in Sources */,
 				CD9FAB81258EC60200D6D0C5 /* DHBW_ServiceApp.swift in Sources */,
