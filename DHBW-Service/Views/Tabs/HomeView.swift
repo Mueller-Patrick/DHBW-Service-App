@@ -6,9 +6,14 @@
 //
 
 import SwiftUI
+import CoreData
 
 struct HomeView: View {
     @EnvironmentObject var settings: LocalSettings
+    @State var user: NSManagedObject = NSManagedObject()
+    
+    
+    
     
     var body: some View {
         VStack {
@@ -18,6 +23,25 @@ struct HomeView: View {
                 Text("First opening toggle")
             }
             Text("Test")
+            
+//            Text(user.value(forKey: "name") as! String)
+            
+        }.onAppear{
+            self.readFromCoreData()
+        }
+    }
+}
+
+extension HomeView{
+    func readFromCoreData(){
+        let managedContext = PersistenceController.shared.context
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "User")
+        
+        do {
+            try print(managedContext.fetch(fetchRequest))
+            self.user = try managedContext.fetch(fetchRequest)[0]
+        } catch let error as NSError {
+            print(error)
         }
     }
 }
