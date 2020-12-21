@@ -21,7 +21,7 @@ struct PersistenceController {
         }
     }
 
-    // Constructor
+    // MARK: - Constructor
     init(inMemory: Bool = false) {
         container = NSPersistentCloudKitContainer(name: "DHBW_Service")
         if inMemory {
@@ -45,7 +45,21 @@ struct PersistenceController {
         })
     }
     
-    // Preview content
+    // MARK: - Core Data Saving support
+    
+    public func save() {
+        if self.context.hasChanges {
+            do {
+                try self.context.save()
+                print("In CoreData.stack.save()")
+            } catch {
+                let nserror = error as NSError
+                fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+            }
+        }
+    }
+    
+    // MARK: - Preview content
     static var preview: PersistenceController = {
         let result = PersistenceController(inMemory: true)
         let viewContext = result.container.viewContext
