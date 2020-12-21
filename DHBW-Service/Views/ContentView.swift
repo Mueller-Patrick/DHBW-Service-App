@@ -26,11 +26,7 @@ struct ContentView: View {
                         .tag(0)
                 }
             } else {
-                Button(action: {
-                    self.settings.isFirstOpening = !self.settings.isFirstOpening
-                }){
-                    Text("First opening toggle")
-                }
+                FirstOpeningSettings()
             }
         }
     }
