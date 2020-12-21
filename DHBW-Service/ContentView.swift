@@ -25,11 +25,15 @@ struct ContentView: View {
         }
         .toolbar {
             #if os(iOS)
-            EditButton()
+                ToolbarItem(placement: .bottomBar) {
+                    EditButton()
+                }
             #endif
-
-            Button(action: addItem) {
-                Label("Add Item", systemImage: "plus")
+            
+            ToolbarItem(placement: .bottomBar) {
+                Button(action: addItem) {
+                    Label("Add Item", systemImage: "plus")
+                }
             }
         }
     }
