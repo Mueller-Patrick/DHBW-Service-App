@@ -34,6 +34,7 @@ struct FirstOpeningSettings: View {
                 .padding(.horizontal)
             Button(action: {
                 self.settings.isFirstOpening = !self.settings.isFirstOpening
+                self.saveToCoreData()
             }){
                 Text("Confirm")
                     .padding()
@@ -47,6 +48,11 @@ struct FirstOpeningSettings: View {
 
 extension FirstOpeningSettings{
     func saveToCoreData(){
+        // Delete old user data
+        let status = UtilityFunctions.deleteAllCoreDataEntitiesOfType(type: "User")
+        print("Deleting old user data status: \(status)")
+        
+        // Insert new user data
         let entity = NSEntityDescription.entity(forEntityName: "User", in: PersistenceController.shared.context)!
         let user = NSManagedObject(entity: entity, insertInto: PersistenceController.shared.context)
         user.setValue(name, forKey: "name")

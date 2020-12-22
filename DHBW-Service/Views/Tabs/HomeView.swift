@@ -10,10 +10,7 @@ import CoreData
 
 struct HomeView: View {
     @EnvironmentObject var settings: LocalSettings
-    @State var user: NSManagedObject = NSManagedObject()
-    
-    
-    
+    @State private var name: String = ""
     
     var body: some View {
         VStack {
@@ -24,7 +21,7 @@ struct HomeView: View {
             }
             Text("Test")
             
-//            Text(user.value(forKey: "name") as! String)
+            Text(self.name)
             
         }.onAppear{
             self.readFromCoreData()
@@ -33,15 +30,12 @@ struct HomeView: View {
 }
 
 extension HomeView{
-    func readFromCoreData(){
-        let managedContext = PersistenceController.shared.context
-        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "User")
+    func readFromCoreData() {
+        let fetchedData = UtilityFunctions.getCoreDataObject(entity: "User")
         
-        do {
-            try print(managedContext.fetch(fetchRequest))
-            self.user = try managedContext.fetch(fetchRequest)[0]
-        } catch let error as NSError {
-            print(error)
+        if(!fetchedData.isEmpty) {
+            let user = fetchedData[0]
+            self.name = user.value(forKey: "name") as! String
         }
     }
 }
