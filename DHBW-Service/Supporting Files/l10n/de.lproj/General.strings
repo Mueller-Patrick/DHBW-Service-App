@@ -1,0 +1,10 @@
+/* 
+  General.strings
+  DHBW-Service
+
+  Created by Patrick Müller on 22.12.20.
+  
+*/
+"name" = "Name";
+"course" = "Kurs";
+"director" = "Studiengangsleiter";

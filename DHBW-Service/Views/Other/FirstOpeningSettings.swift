@@ -17,17 +17,17 @@ struct FirstOpeningSettings: View {
     var body: some View {
         
         VStack {
-            TextField("Name", text: self.$name)
+            TextField("name".localized(tableName: "General", plural: false), text: self.$name)
                 .textContentType(.name)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .frame(minWidth: 200, idealWidth: nil, maxWidth: 500, minHeight: nil, idealHeight: nil, maxHeight: nil, alignment: .center)
                 .padding(.horizontal)
-            TextField("Course", text: self.$course)
+            TextField("course".localized(tableName: "General", plural: false), text: self.$course)
                 .textContentType(.name)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .frame(minWidth: 200, idealWidth: nil, maxWidth: 500, minHeight: nil, idealHeight: nil, maxHeight: nil, alignment: .center)
                 .padding(.horizontal)
-            TextField("Director", text: self.$director)
+            TextField("director".localized(tableName: "General", plural: false), text: self.$director)
                 .textContentType(.name)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .frame(minWidth: 200, idealWidth: nil, maxWidth: 500, minHeight: nil, idealHeight: nil, maxHeight: nil, alignment: .center)
