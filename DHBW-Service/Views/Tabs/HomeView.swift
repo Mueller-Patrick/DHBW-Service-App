@@ -11,6 +11,8 @@ import CoreData
 struct HomeView: View {
     @EnvironmentObject var settings: LocalSettings
     @State private var name: String = ""
+    @State private var course: String = ""
+    @State private var director: String = ""
     
     var body: some View {
         VStack {
@@ -21,8 +23,18 @@ struct HomeView: View {
             }
             Text("Test")
             
-            Text(self.name)
-            
+            HStack {
+                Text("name".localized(tableName: "General", plural: false) + ": ")
+                Text(self.name)
+            }
+            HStack {
+                Text("course".localized(tableName: "General", plural: false) + ": ")
+                Text(self.course)
+            }
+            HStack {
+                Text("director".localized(tableName: "General", plural: false) + ": ")
+                Text(self.director)
+            }
         }.onAppear{
             self.readFromCoreData()
         }
@@ -36,6 +48,8 @@ extension HomeView{
         if(!fetchedData.isEmpty) {
             let user = fetchedData[0]
             self.name = user.value(forKey: "name") as! String
+            self.course = user.value(forKey: "course") as! String
+            self.director = user.value(forKey: "director") as! String
         }
     }
 }
