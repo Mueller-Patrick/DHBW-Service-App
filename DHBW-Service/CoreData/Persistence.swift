@@ -63,10 +63,14 @@ struct PersistenceController {
     static var preview: PersistenceController = {
         let result = PersistenceController(inMemory: true)
         let viewContext = result.container.viewContext
-        for _ in 0..<10 {
-            let newItem = Item(context: viewContext)
-            newItem.timestamp = Date()
-        }
+        
+        // set mock user
+        let entity = NSEntityDescription.entity(forEntityName: "User", in: PersistenceController.shared.context)!
+        let user = NSManagedObject(entity: entity, insertInto: PersistenceController.shared.context)
+        user.setValue("Max Mustermann", forKey: "name")
+        user.setValue("TINF19B4", forKey: "course")
+        user.setValue("Dr. Mustermann", forKey: "director")
+        
         do {
             try viewContext.save()
         } catch {

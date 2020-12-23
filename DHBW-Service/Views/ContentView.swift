@@ -14,7 +14,9 @@ struct ContentView: View {
     
     var body: some View {
         Group {
-            if(!settings.isFirstOpening) {
+            if(settings.isFirstOpening) {
+                FirstOpeningSettings()
+            } else {
                 TabView(selection: $selection) {
                     HomeView()
                         .tabItem {
@@ -24,9 +26,15 @@ struct ContentView: View {
                             }
                         }
                         .tag(0)
+                    HomeView()
+                        .tabItem {
+                            VStack {
+                                Image(systemName: "gear")
+                                Text("Settings")
+                            }
+                        }
+                        .tag(1)
                 }
-            } else {
-                FirstOpeningSettings()
             }
         }
     }
@@ -36,9 +44,17 @@ extension ContentView{
 }
 
 struct ContentView_Previews: PreviewProvider {
+    
+    static func getFirstOpening() -> LocalSettings {
+        let settings = LocalSettings();
+        settings.isFirstOpening = false;
+        return settings
+    }
+    
     static var previews: some View {
         ContentView()
             .preferredColorScheme(.dark)
-            .environmentObject(LocalSettings())
+            .environmentObject(getFirstOpening())
+            .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
     }
 }
