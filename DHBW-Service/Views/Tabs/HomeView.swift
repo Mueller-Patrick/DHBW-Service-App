@@ -16,13 +16,6 @@ struct HomeView: View {
     
     var body: some View {
         VStack {
-            Button(action: {
-                self.settings.isFirstOpening = !self.settings.isFirstOpening
-            }){
-                Text("First opening toggle")
-            }
-            Text("Test")
-            
             HStack {
                 Text("name".localized(tableName: "General", plural: false) + ": ")
                 Text(self.name)
