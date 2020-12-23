@@ -17,12 +17,9 @@ struct FirstOpeningSettings: View {
     @State private var invalidInputCourse = false
     
     var body: some View {
-        
         VStack {
-            
             Text("welcomeText".localized(tableName: "General", plural: false))
             TextField("name".localized(tableName: "General", plural: false), text: self.$name)
-                
                 .overlay(RoundedRectangle(cornerRadius: 10).stroke(invalidInputCourse ? Color.red : Color.secondary, lineWidth: 1))
                 .foregroundColor(invalidInputName ? .red : .primary)
                 .textContentType(.name)
@@ -30,8 +27,7 @@ struct FirstOpeningSettings: View {
                 .frame(minWidth: 200, idealWidth: nil, maxWidth: 500, minHeight: nil, idealHeight: nil, maxHeight: nil, alignment: .center)
                 .padding(.horizontal)
             
-            TextField("course".localized(tableName: "General", plural: false),
-                      text: self.$course)
+            TextField("course".localized(tableName: "General", plural: false), text: self.$course)
                 .overlay(RoundedRectangle(cornerRadius: 10).stroke(invalidInputCourse ? Color.red : Color.secondary, lineWidth: 1))
                 .onChange(of: course, perform: { value in
                     self.setDirector()
@@ -50,6 +46,7 @@ struct FirstOpeningSettings: View {
                 .frame(minWidth: 200, idealWidth: nil, maxWidth: 500, minHeight: nil, idealHeight: nil, maxHeight: nil, alignment: .center)
                 .padding(.horizontal)
                 .disabled(true)
+            
             Button(action: {
                 self.saveToCoreData()
             }){
