@@ -44,17 +44,16 @@ extension ContentView{
 }
 
 struct ContentView_Previews: PreviewProvider {
-    
-    static func getFirstOpening() -> LocalSettings {
-        let settings = LocalSettings();
-        settings.isFirstOpening = false;
-        return settings
-    }
-    
     static var previews: some View {
         ContentView()
             .preferredColorScheme(.dark)
             .environmentObject(getFirstOpening())
             .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+    }
+    
+    static func getFirstOpening() -> LocalSettings {
+        let settings = LocalSettings();
+        settings.isFirstOpening = false;
+        return settings
     }
 }

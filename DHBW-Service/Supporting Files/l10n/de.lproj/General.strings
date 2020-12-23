@@ -8,3 +8,5 @@
 "name" = "Name";
 "course" = "Kurs";
 "director" = "Studiengangsleiter";
+"filledAuto" = "automatisch ausgefüllt";
+"welcomeText" = "Bitte fülle die folgenden Felder aus:";
