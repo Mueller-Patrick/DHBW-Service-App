@@ -18,6 +18,7 @@
 		CDCD721A25912E1200FBF2F5 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCD721925912E1200FBF2F5 /* HomeView.swift */; };
 		CDCD72242591316500FBF2F5 /* LocalSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCD72232591316500FBF2F5 /* LocalSettings.swift */; };
 		CDCD7230259135C500FBF2F5 /* FirstOpeningSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCD722F259135C500FBF2F5 /* FirstOpeningSettings.swift */; };
+		CDD39B4B259A64150078D05F /* SettingsMain.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD39B4A259A64150078D05F /* SettingsMain.swift */; };
 		CDDCF47B2591FE550027CDC5 /* UtilityFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDDCF47A2591FE550027CDC5 /* UtilityFunctions.swift */; };
 		CDDCF4842592028A0027CDC5 /* Localizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDDCF4832592028A0027CDC5 /* Localizer.swift */; };
 		CDDCF493259203390027CDC5 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CDDCF495259203390027CDC5 /* Localizable.strings */; };
@@ -59,6 +60,7 @@
 		CDCD721925912E1200FBF2F5 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		CDCD72232591316500FBF2F5 /* LocalSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalSettings.swift; sourceTree = "<group>"; };
 		CDCD722F259135C500FBF2F5 /* FirstOpeningSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstOpeningSettings.swift; sourceTree = "<group>"; };
+		CDD39B4A259A64150078D05F /* SettingsMain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsMain.swift; sourceTree = "<group>"; };
 		CDDCF47A2591FE550027CDC5 /* UtilityFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilityFunctions.swift; sourceTree = "<group>"; };
 		CDDCF4832592028A0027CDC5 /* Localizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localizer.swift; sourceTree = "<group>"; };
 		CDDCF494259203390027CDC5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -193,6 +195,7 @@
 			isa = PBXGroup;
 			children = (
 				CDCD721925912E1200FBF2F5 /* HomeView.swift */,
+				CDD39B4A259A64150078D05F /* SettingsMain.swift */,
 			);
 			path = Tabs;
 			sourceTree = "<group>";
@@ -370,6 +373,7 @@
 				CDCD72242591316500FBF2F5 /* LocalSettings.swift in Sources */,
 				CD9FAB8D258EC60600D6D0C5 /* DHBW_Service.xcdatamodeld in Sources */,
 				CDCD721A25912E1200FBF2F5 /* HomeView.swift in Sources */,
+				CDD39B4B259A64150078D05F /* SettingsMain.swift in Sources */,
 				CDDCF47B2591FE550027CDC5 /* UtilityFunctions.swift in Sources */,
 				CD9FAB81258EC60200D6D0C5 /* DHBW_ServiceApp.swift in Sources */,
 			);
@@ -551,7 +555,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"DHBW-Service/Preview Content\"";
-				DEVELOPMENT_TEAM = G3TRS8UHWN;
+				DEVELOPMENT_TEAM = HS7KNT4MZ2;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "DHBW-Service/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -573,7 +577,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"DHBW-Service/Preview Content\"";
-				DEVELOPMENT_TEAM = G3TRS8UHWN;
+				DEVELOPMENT_TEAM = HS7KNT4MZ2;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "DHBW-Service/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;

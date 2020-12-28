@@ -51,6 +51,13 @@ struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
         HomeView()
             .preferredColorScheme(.dark)
-            .environmentObject(LocalSettings())
+            .environmentObject(getFirstOpening())
+            .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+    }
+    
+    static func getFirstOpening() -> LocalSettings {
+        let settings = LocalSettings();
+        settings.isFirstOpening = false;
+        return settings
     }
 }
