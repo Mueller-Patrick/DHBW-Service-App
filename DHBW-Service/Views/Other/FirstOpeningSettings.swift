@@ -19,8 +19,9 @@ struct FirstOpeningSettings: View {
     var body: some View {
         VStack {
             Text("welcomeText".localized(tableName: "General", plural: false))
+            
             TextField("name".localized(tableName: "General", plural: false), text: self.$name)
-                .overlay(RoundedRectangle(cornerRadius: 10).stroke(invalidInputCourse ? Color.red : Color.secondary, lineWidth: 1))
+                .overlay(RoundedRectangle(cornerRadius: 10).stroke(invalidInputName ? Color.red : Color.secondary, lineWidth: 1))
                 .foregroundColor(invalidInputName ? .red : .primary)
                 .textContentType(.name)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
@@ -56,6 +57,7 @@ struct FirstOpeningSettings: View {
                     .background(Color.blue)
                     .cornerRadius(15)
             }
+            //.disabled() //TODO: Check all inputs before enabling the button
         }
     }
 }

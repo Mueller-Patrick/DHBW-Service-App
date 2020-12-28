@@ -39,4 +39,25 @@ class UtilityFunctions {
             return false
         }
     }
+    
+    public class func deleteAllData() -> Bool {
+        let entities = ["User", "Item"]
+        var allSuccessful = true
+        
+        for entityName in entities {
+            let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: entityName)
+            let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+
+            do {
+                try PersistenceController.shared.context.execute(deleteRequest)
+                
+                PersistenceController.shared.save()
+            } catch let error as NSError {
+                print(error)
+                allSuccessful = false
+            }
+        }
+        
+        return allSuccessful
+    }
 }

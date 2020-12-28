@@ -10,3 +10,8 @@
 "director" = "Director";
 "filledAuto" = "filled automatically";
 "welcomeText" = "Please enter your data in the following fields:";
+"settings" = "Settings";
+"other" = "Other";
+"logoutClearData" = "Logout and clear all data";
+"logout" = "Logout";
+"confirmLogoutMessage" = "Are you sure you want to logout and clear all data? This cannot be undone.";

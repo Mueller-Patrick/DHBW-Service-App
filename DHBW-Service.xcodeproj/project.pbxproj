@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CD730A35259A860E00E0BB69 /* SettingsAcknowledgements.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD730A34259A860E00E0BB69 /* SettingsAcknowledgements.swift */; };
 		CD9FAB81258EC60200D6D0C5 /* DHBW_ServiceApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9FAB80258EC60200D6D0C5 /* DHBW_ServiceApp.swift */; };
 		CD9FAB83258EC60200D6D0C5 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9FAB82258EC60200D6D0C5 /* ContentView.swift */; };
 		CD9FAB85258EC60600D6D0C5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CD9FAB84258EC60600D6D0C5 /* Assets.xcassets */; };
@@ -43,6 +44,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		CD730A34259A860E00E0BB69 /* SettingsAcknowledgements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsAcknowledgements.swift; sourceTree = "<group>"; };
 		CD9FAB7D258EC60200D6D0C5 /* DHBW-Service.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "DHBW-Service.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD9FAB80258EC60200D6D0C5 /* DHBW_ServiceApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DHBW_ServiceApp.swift; sourceTree = "<group>"; };
 		CD9FAB82258EC60200D6D0C5 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -94,6 +96,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CD730A33259A85F500E0BB69 /* SettingsSubViews */ = {
+			isa = PBXGroup;
+			children = (
+				CD730A34259A860E00E0BB69 /* SettingsAcknowledgements.swift */,
+			);
+			path = SettingsSubViews;
+			sourceTree = "<group>";
+		};
 		CD9FAB74258EC60100D6D0C5 = {
 			isa = PBXGroup;
 			children = (
@@ -196,6 +206,7 @@
 			children = (
 				CDCD721925912E1200FBF2F5 /* HomeView.swift */,
 				CDD39B4A259A64150078D05F /* SettingsMain.swift */,
+				CD730A33259A85F500E0BB69 /* SettingsSubViews */,
 			);
 			path = Tabs;
 			sourceTree = "<group>";
@@ -369,6 +380,7 @@
 				CDDCF4842592028A0027CDC5 /* Localizer.swift in Sources */,
 				CDCD7230259135C500FBF2F5 /* FirstOpeningSettings.swift in Sources */,
 				CD9FAB8A258EC60600D6D0C5 /* Persistence.swift in Sources */,
+				CD730A35259A860E00E0BB69 /* SettingsAcknowledgements.swift in Sources */,
 				CD9FAB83258EC60200D6D0C5 /* ContentView.swift in Sources */,
 				CDCD72242591316500FBF2F5 /* LocalSettings.swift in Sources */,
 				CD9FAB8D258EC60600D6D0C5 /* DHBW_Service.xcdatamodeld in Sources */,

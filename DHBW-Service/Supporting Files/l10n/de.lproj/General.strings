@@ -10,3 +10,8 @@
 "director" = "Studiengangsleiter";
 "filledAuto" = "automatisch ausgefüllt";
 "welcomeText" = "Bitte fülle die folgenden Felder aus:";
+"settings" = "Einstellungen";
+"other" = "Sonstiges";
+"logoutClearData" = "Abmelden und alle Daten löschen";
+"logout" = "Abmelden";
+"confirmLogoutMessage" = "Bist du dir sicher, dass du dich abmelden und alle Daten löschen möchtest? Diese Aktion kann nicht rückgängig gemacht werden.";
