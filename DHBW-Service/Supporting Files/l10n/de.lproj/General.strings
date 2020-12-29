@@ -15,3 +15,4 @@
 "logoutClearData" = "Abmelden und alle Daten löschen";
 "logout" = "Abmelden";
 "confirmLogoutMessage" = "Bist du dir sicher, dass du dich abmelden und alle Daten löschen möchtest? Diese Aktion kann nicht rückgängig gemacht werden.";
+"contributors" = "Mitwirkende";

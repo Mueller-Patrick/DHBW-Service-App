@@ -15,3 +15,4 @@
 "logoutClearData" = "Logout and clear all data";
 "logout" = "Logout";
 "confirmLogoutMessage" = "Are you sure you want to logout and clear all data? This cannot be undone.";
+"contributors" = "Contributors";

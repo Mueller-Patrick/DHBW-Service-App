@@ -10,7 +10,7 @@ import SwiftUI
 struct SettingsAcknowledgements: View {
     var body: some View {
         VStack {
-            Text("Contributors")
+            Text("contributors".localized(tableName: "General", plural: false))
                 .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
             Spacer()
             Text("David Huh")
