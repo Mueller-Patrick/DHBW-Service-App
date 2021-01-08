@@ -50,6 +50,7 @@ struct FirstOpeningSettings: View {
             
             Button(action: {
                 self.saveToCoreData()
+                self.checkAppIcon()
             }){
                 Text("Confirm")
                     .padding()
@@ -102,6 +103,32 @@ extension FirstOpeningSettings{
         
         self.settings.isFirstOpening = !self.settings.isFirstOpening
         PersistenceController.shared.save()
+    }
+    
+    /*
+     Check the input and change app icon if necessary
+     */
+    func checkAppIcon() {
+        if(self.name.lowercased().contains("alpaca")) {
+            UIApplication.shared.setAlternateIconName("Alpaca-Alt-Icon") { error in
+                if let error = error {
+                    print("Error changing app icon:")
+                    print(error.localizedDescription)
+                } else {
+                    print("Successfully changed app icon!")
+                }
+            }
+        }
+        if(UIApplication.shared.alternateIconName == "Alpaca-Alt-Icon" && !self.name.lowercased().contains("alpaca")) {
+            UIApplication.shared.setAlternateIconName(nil) { error in
+                if let error = error {
+                    print("Error changing app icon:")
+                    print(error.localizedDescription)
+                } else {
+                    print("Successfully changed app icon!")
+                }
+            }
+        }
     }
 }
 

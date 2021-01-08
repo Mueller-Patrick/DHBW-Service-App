@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CD2FC0C525A869FE00963178 /* dhbw-standard-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD2FC0C025A869FE00963178 /* dhbw-standard-icon@2x.png */; };
+		CD2FC0C625A869FE00963178 /* dhbw-standard-icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD2FC0C125A869FE00963178 /* dhbw-standard-icon@3x.png */; };
+		CD2FC0C725A869FE00963178 /* alpaca-alt-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD2FC0C325A869FE00963178 /* alpaca-alt-icon@2x.png */; };
+		CD2FC0C825A869FE00963178 /* alpaca-alt-icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD2FC0C425A869FE00963178 /* alpaca-alt-icon@3x.png */; };
 		CD730A35259A860E00E0BB69 /* SettingsAcknowledgements.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD730A34259A860E00E0BB69 /* SettingsAcknowledgements.swift */; };
 		CD9FAB81258EC60200D6D0C5 /* DHBW_ServiceApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9FAB80258EC60200D6D0C5 /* DHBW_ServiceApp.swift */; };
 		CD9FAB83258EC60200D6D0C5 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9FAB82258EC60200D6D0C5 /* ContentView.swift */; };
@@ -44,6 +48,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		CD2FC0C025A869FE00963178 /* dhbw-standard-icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dhbw-standard-icon@2x.png"; sourceTree = "<group>"; };
+		CD2FC0C125A869FE00963178 /* dhbw-standard-icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dhbw-standard-icon@3x.png"; sourceTree = "<group>"; };
+		CD2FC0C325A869FE00963178 /* alpaca-alt-icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "alpaca-alt-icon@2x.png"; sourceTree = "<group>"; };
+		CD2FC0C425A869FE00963178 /* alpaca-alt-icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "alpaca-alt-icon@3x.png"; sourceTree = "<group>"; };
 		CD730A34259A860E00E0BB69 /* SettingsAcknowledgements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsAcknowledgements.swift; sourceTree = "<group>"; };
 		CD9FAB7D258EC60200D6D0C5 /* DHBW-Service.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "DHBW-Service.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD9FAB80258EC60200D6D0C5 /* DHBW_ServiceApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DHBW_ServiceApp.swift; sourceTree = "<group>"; };
@@ -96,6 +104,41 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CD2FC0BD25A869F000963178 /* res */ = {
+			isa = PBXGroup;
+			children = (
+				CD2FC0BE25A869FE00963178 /* Icons */,
+			);
+			path = res;
+			sourceTree = "<group>";
+		};
+		CD2FC0BE25A869FE00963178 /* Icons */ = {
+			isa = PBXGroup;
+			children = (
+				CD2FC0BF25A869FE00963178 /* Standard */,
+				CD2FC0C225A869FE00963178 /* Alt1 */,
+			);
+			path = Icons;
+			sourceTree = "<group>";
+		};
+		CD2FC0BF25A869FE00963178 /* Standard */ = {
+			isa = PBXGroup;
+			children = (
+				CD2FC0C025A869FE00963178 /* dhbw-standard-icon@2x.png */,
+				CD2FC0C125A869FE00963178 /* dhbw-standard-icon@3x.png */,
+			);
+			path = Standard;
+			sourceTree = "<group>";
+		};
+		CD2FC0C225A869FE00963178 /* Alt1 */ = {
+			isa = PBXGroup;
+			children = (
+				CD2FC0C325A869FE00963178 /* alpaca-alt-icon@2x.png */,
+				CD2FC0C425A869FE00963178 /* alpaca-alt-icon@3x.png */,
+			);
+			path = Alt1;
+			sourceTree = "<group>";
+		};
 		CD730A33259A85F500E0BB69 /* SettingsSubViews */ = {
 			isa = PBXGroup;
 			children = (
@@ -194,6 +237,7 @@
 		CDCD721225912D6300FBF2F5 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				CD2FC0BD25A869F000963178 /* res */,
 				CDDCF482259202700027CDC5 /* l10n */,
 				CD9FAB8E258EC60600D6D0C5 /* Info.plist */,
 				CD9FAB84258EC60600D6D0C5 /* Assets.xcassets */,
@@ -349,10 +393,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CD2FC0C725A869FE00963178 /* alpaca-alt-icon@2x.png in Resources */,
 				CD9FAB88258EC60600D6D0C5 /* Preview Assets.xcassets in Resources */,
 				CDDCF4A2259203B40027CDC5 /* General.strings in Resources */,
+				CD2FC0C525A869FE00963178 /* dhbw-standard-icon@2x.png in Resources */,
+				CD2FC0C625A869FE00963178 /* dhbw-standard-icon@3x.png in Resources */,
 				CDDCF493259203390027CDC5 /* Localizable.strings in Resources */,
 				CD9FAB85258EC60600D6D0C5 /* Assets.xcassets in Resources */,
+				CD2FC0C825A869FE00963178 /* alpaca-alt-icon@3x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -565,7 +613,6 @@
 		CD9FABA8258EC60600D6D0C5 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"DHBW-Service/Preview Content\"";
@@ -587,7 +634,6 @@
 		CD9FABA9258EC60600D6D0C5 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"DHBW-Service/Preview Content\"";
