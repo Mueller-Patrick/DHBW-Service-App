@@ -12,6 +12,8 @@
 		CD2FC0C725A869FE00963178 /* alpaca-alt-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD2FC0C325A869FE00963178 /* alpaca-alt-icon@2x.png */; };
 		CD2FC0C825A869FE00963178 /* alpaca-alt-icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD2FC0C425A869FE00963178 /* alpaca-alt-icon@3x.png */; };
 		CD730A35259A860E00E0BB69 /* SettingsAcknowledgements.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD730A34259A860E00E0BB69 /* SettingsAcknowledgements.swift */; };
+		CD8555BE25C47AE500C4ACD6 /* RaPlaFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8555BD25C47AE500C4ACD6 /* RaPlaFetcher.swift */; };
+		CD8555C325C47B5300C4ACD6 /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8555C225C47B5300C4ACD6 /* ApiService.swift */; };
 		CD9FAB81258EC60200D6D0C5 /* DHBW_ServiceApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9FAB80258EC60200D6D0C5 /* DHBW_ServiceApp.swift */; };
 		CD9FAB83258EC60200D6D0C5 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9FAB82258EC60200D6D0C5 /* ContentView.swift */; };
 		CD9FAB85258EC60600D6D0C5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CD9FAB84258EC60600D6D0C5 /* Assets.xcassets */; };
@@ -28,6 +30,7 @@
 		CDDCF4842592028A0027CDC5 /* Localizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDDCF4832592028A0027CDC5 /* Localizer.swift */; };
 		CDDCF493259203390027CDC5 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CDDCF495259203390027CDC5 /* Localizable.strings */; };
 		CDDCF4A2259203B40027CDC5 /* General.strings in Resources */ = {isa = PBXBuildFile; fileRef = CDDCF4A4259203B40027CDC5 /* General.strings */; };
+		CDEA70B225C6054F001CFE28 /* LecturePlanList.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDEA70B125C6054F001CFE28 /* LecturePlanList.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +56,8 @@
 		CD2FC0C325A869FE00963178 /* alpaca-alt-icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "alpaca-alt-icon@2x.png"; sourceTree = "<group>"; };
 		CD2FC0C425A869FE00963178 /* alpaca-alt-icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "alpaca-alt-icon@3x.png"; sourceTree = "<group>"; };
 		CD730A34259A860E00E0BB69 /* SettingsAcknowledgements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsAcknowledgements.swift; sourceTree = "<group>"; };
+		CD8555BD25C47AE500C4ACD6 /* RaPlaFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RaPlaFetcher.swift; sourceTree = "<group>"; };
+		CD8555C225C47B5300C4ACD6 /* ApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
 		CD9FAB7D258EC60200D6D0C5 /* DHBW-Service.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "DHBW-Service.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD9FAB80258EC60200D6D0C5 /* DHBW_ServiceApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DHBW_ServiceApp.swift; sourceTree = "<group>"; };
 		CD9FAB82258EC60200D6D0C5 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -77,6 +82,7 @@
 		CDDCF4992592033F0027CDC5 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		CDDCF4A3259203B40027CDC5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/General.strings; sourceTree = "<group>"; };
 		CDDCF4A8259203B80027CDC5 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/General.strings; sourceTree = "<group>"; };
+		CDEA70B125C6054F001CFE28 /* LecturePlanList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LecturePlanList.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -250,6 +256,7 @@
 			children = (
 				CDCD721925912E1200FBF2F5 /* HomeView.swift */,
 				CDD39B4A259A64150078D05F /* SettingsMain.swift */,
+				CDEA70B125C6054F001CFE28 /* LecturePlanList.swift */,
 				CD730A33259A85F500E0BB69 /* SettingsSubViews */,
 			);
 			path = Tabs;
@@ -275,6 +282,8 @@
 			isa = PBXGroup;
 			children = (
 				CDDCF47A2591FE550027CDC5 /* UtilityFunctions.swift */,
+				CD8555BD25C47AE500C4ACD6 /* RaPlaFetcher.swift */,
+				CD8555C225C47B5300C4ACD6 /* ApiService.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -431,9 +440,12 @@
 				CD730A35259A860E00E0BB69 /* SettingsAcknowledgements.swift in Sources */,
 				CD9FAB83258EC60200D6D0C5 /* ContentView.swift in Sources */,
 				CDCD72242591316500FBF2F5 /* LocalSettings.swift in Sources */,
+				CD8555BE25C47AE500C4ACD6 /* RaPlaFetcher.swift in Sources */,
+				CD8555C325C47B5300C4ACD6 /* ApiService.swift in Sources */,
 				CD9FAB8D258EC60600D6D0C5 /* DHBW_Service.xcdatamodeld in Sources */,
 				CDCD721A25912E1200FBF2F5 /* HomeView.swift in Sources */,
 				CDD39B4B259A64150078D05F /* SettingsMain.swift in Sources */,
+				CDEA70B225C6054F001CFE28 /* LecturePlanList.swift in Sources */,
 				CDDCF47B2591FE550027CDC5 /* UtilityFunctions.swift in Sources */,
 				CD9FAB81258EC60200D6D0C5 /* DHBW_ServiceApp.swift in Sources */,
 			);

@@ -26,6 +26,14 @@ struct ContentView: View {
                             }
                         }
                         .tag(0)
+                    LecturePlanList()
+                        .tabItem {
+                            VStack {
+                                Image(systemName: "calendar")
+                                Text("Lecture Plan")
+                            }
+                        }
+                        .tag(1)
                     SettingsMain()
                         .tabItem {
                             VStack {
@@ -33,9 +41,13 @@ struct ContentView: View {
                                 Text("Settings")
                             }
                         }
-                        .tag(1)
+                        .tag(2)
                 }
             }
+        }
+        .onAppear{
+            // Called upon the opening of the app
+            RaPlaFetcher.getRaplaFileAndSaveToCoreData(from: "https://rapla.dhbw-karlsruhe.de/rapla?page=ical&user=eisenbiegler&file=TINF19B4")
         }
     }
 }

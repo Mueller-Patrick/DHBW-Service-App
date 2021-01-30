@@ -9,12 +9,13 @@ import Foundation
 import CoreData
 
 class UtilityFunctions {
-    public class func getCoreDataObject(entity: String) -> [NSManagedObject]{
+    public class func getCoreDataObject(entity: String, sortDescriptors: [NSSortDescriptor]) -> [NSManagedObject]{
         let managedContext =
             PersistenceController.shared.context
         
         let fetchRequest =
           NSFetchRequest<NSManagedObject>(entityName: entity)
+        fetchRequest.sortDescriptors = sortDescriptors
         
         do {
             return try managedContext.fetch(fetchRequest)
@@ -59,5 +60,21 @@ class UtilityFunctions {
         }
         
         return allSuccessful
+    }
+    
+    // MARK: Find matches in the given text for the given regex string.
+    public class func regexMatches(for regex: String, with options: NSRegularExpression.Options, in text: String) -> [String] {
+
+        do {
+            let regex = try NSRegularExpression(pattern: regex, options: options)
+            let results = regex.matches(in: text,
+                                        range: NSRange(text.startIndex..., in: text))
+            return results.map {
+                String(text[Range($0.range, in: text)!])
+            }
+        } catch let error {
+            print("invalid regex: \(error.localizedDescription)")
+            return []
+        }
     }
 }

@@ -36,7 +36,7 @@ struct HomeView: View {
 
 extension HomeView{
     func readFromCoreData() {
-        let fetchedData = UtilityFunctions.getCoreDataObject(entity: "User")
+        let fetchedData = UtilityFunctions.getCoreDataObject(entity: "User", sortDescriptors: [])
         
         if(!fetchedData.isEmpty) {
             let user = fetchedData[0]
