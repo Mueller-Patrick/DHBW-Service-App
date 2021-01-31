@@ -117,13 +117,14 @@ class RaPlaFetcher {
     }
     
     // Save the given iCalEvent objects to CoreData
-    // Updates the events if they already exist
+    // Updates the events if they already exist and deletes old (/invalid) ones
     private class func saveToCoreData(eventObjects: [iCalEvent]) -> Bool{
         let existingEvents = UtilityFunctions.getCoreDataObject(entity: "RaPlaEvent", sortDescriptors: [])
         var existingEventsDict: [String:NSManagedObject] = [:]
         for event in existingEvents {
             existingEventsDict[event.value(forKey: "uid") as! String] = event
         }
+        let newEventUIDs = eventObjects.map{$0.uid}
         
         for event in eventObjects {
             // If the event already exists locally, update it. Otherwise, create a new record
@@ -141,6 +142,16 @@ class RaPlaFetcher {
             evt.setValue(event.location, forKey: "location")
             evt.setValue(event.category, forKey: "category")
             evt.setValue(event.uid, forKey: "uid")
+        }
+        
+        // Now we also have to delete locally stored events that have been deleted from RaPla
+        for localUid in existingEventsDict.keys {
+            if(!newEventUIDs.contains(localUid)){
+                // Locally stored event does not exist in RaPla anymore, delete it
+                let evt = existingEventsDict[localUid]
+                PersistenceController.shared.context.delete(evt!)
+                print("Deleted " + localUid)
+            }
         }
         
         PersistenceController.shared.save()
