@@ -16,6 +16,7 @@ class RaPlaFetcher {
         var description: String = ""    //DESCRIPTION
         var location: String = ""       //LOCATION
         var category: String = ""       //CATEGORIES
+        var uid: String = ""            //UID
     }
     
     // Get the RaPla file from the given URL and save the events to CoreData
@@ -104,6 +105,8 @@ class RaPlaFetcher {
                     evt.location = lineWithoutPrefix
                 } else if(line.hasPrefix("CATEGORIES")){
                     evt.category = lineWithoutPrefix
+                } else if(line.hasPrefix("UID")){
+                    evt.uid = lineWithoutPrefix
                 }
             }
             
@@ -114,25 +117,34 @@ class RaPlaFetcher {
     }
     
     // Save the given iCalEvent objects to CoreData
+    // Updates the events if they already exist
     private class func saveToCoreData(eventObjects: [iCalEvent]) -> Bool{
-        // Delete old data
-        if(UtilityFunctions.deleteAllCoreDataEntitiesOfType(type: "RaPlaEvent")){
-            for event in eventObjects {
-                let entity = NSEntityDescription.entity(forEntityName: "RaPlaEvent", in: PersistenceController.shared.context)!
-                let evt = NSManagedObject(entity: entity, insertInto: PersistenceController.shared.context)
-                evt.setValue(event.startDate, forKey: "startDate")
-                evt.setValue(event.endDate, forKey: "endDate")
-                evt.setValue(event.summary, forKey: "summary")
-                evt.setValue(event.description, forKey: "descr")
-                evt.setValue(event.location, forKey: "location")
-                evt.setValue(event.category, forKey: "category")
-            }
-            
-            PersistenceController.shared.save()
-            
-            return true
-        } else {
-            return false
+        let existingEvents = UtilityFunctions.getCoreDataObject(entity: "RaPlaEvent", sortDescriptors: [])
+        var existingEventsDict: [String:NSManagedObject] = [:]
+        for event in existingEvents {
+            existingEventsDict[event.value(forKey: "uid") as! String] = event
         }
+        
+        for event in eventObjects {
+            // If the event already exists locally, update it. Otherwise, create a new record
+            let evt: NSManagedObject
+            if existingEventsDict.keys.contains(event.uid) {
+                evt = existingEventsDict[event.uid]!
+            } else {
+                let entity = NSEntityDescription.entity(forEntityName: "RaPlaEvent", in: PersistenceController.shared.context)!
+                evt = NSManagedObject(entity: entity, insertInto: PersistenceController.shared.context)
+            }
+            evt.setValue(event.startDate, forKey: "startDate")
+            evt.setValue(event.endDate, forKey: "endDate")
+            evt.setValue(event.summary, forKey: "summary")
+            evt.setValue(event.description, forKey: "descr")
+            evt.setValue(event.location, forKey: "location")
+            evt.setValue(event.category, forKey: "category")
+            evt.setValue(event.uid, forKey: "uid")
+        }
+        
+        PersistenceController.shared.save()
+        
+        return true
     }
 }

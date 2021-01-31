@@ -65,11 +65,40 @@ struct PersistenceController {
         let viewContext = result.container.viewContext
         
         // set mock user
-        let entity = NSEntityDescription.entity(forEntityName: "User", in: PersistenceController.shared.context)!
-        let user = NSManagedObject(entity: entity, insertInto: PersistenceController.shared.context)
+        let userEntity = NSEntityDescription.entity(forEntityName: "User", in: PersistenceController.shared.context)!
+        let user = NSManagedObject(entity: userEntity, insertInto: PersistenceController.shared.context)
         user.setValue("Max Mustermann", forKey: "name")
         user.setValue("TINF19B4", forKey: "course")
         user.setValue("Dr. Mustermann", forKey: "director")
+        
+        // Generate mock events
+        let eventEntity = NSEntityDescription.entity(forEntityName: "RaPlaEvent", in: PersistenceController.shared.context)!
+        let normalEvent1 = NSManagedObject(entity: eventEntity, insertInto: PersistenceController.shared.context)
+        let normalEvent2 = NSManagedObject(entity: eventEntity, insertInto: PersistenceController.shared.context)
+        let examEvent = NSManagedObject(entity: eventEntity, insertInto: PersistenceController.shared.context)
+        normalEvent1.setValue("Mock Event 1", forKey: "summary")
+        normalEvent2.setValue("Mock Event 2", forKey: "summary")
+        examEvent.setValue("Exam Event", forKey: "summary")
+        normalEvent1.setValue("Mock Event 1 Description", forKey: "descr")
+        normalEvent2.setValue("Mock Event 2 Description", forKey: "descr")
+        examEvent.setValue("Exam Event Description", forKey: "descr")
+        normalEvent1.setValue("E207 INF Hörsaal", forKey: "location")
+        normalEvent2.setValue("A306 WI Hörsaal", forKey: "location")
+        examEvent.setValue("Audimax A", forKey: "location")
+        normalEvent1.setValue("Lehrveranstaltung", forKey: "category")
+        normalEvent2.setValue("Lehrveranstaltung", forKey: "category")
+        examEvent.setValue("Prüfung", forKey: "category")
+        var currentDate = Date()
+        currentDate.addTimeInterval(1*60*60);normalEvent1.setValue(currentDate, forKey: "startDate")
+        currentDate.addTimeInterval(1*60*60);normalEvent2.setValue(currentDate, forKey: "startDate")
+        currentDate.addTimeInterval(1*60*60);examEvent.setValue(currentDate, forKey: "startDate")
+        currentDate.addTimeInterval(1*60*60);normalEvent1.setValue(currentDate, forKey: "endDate")
+        currentDate.addTimeInterval(1*60*60);normalEvent2.setValue(currentDate, forKey: "endDate")
+        currentDate.addTimeInterval(1*60*60);examEvent.setValue(currentDate, forKey: "endDate")
+        normalEvent1.setValue("totalUniqueId1", forKey: "uid")
+        normalEvent2.setValue("totalUniqueId2", forKey: "uid")
+        examEvent.setValue("totalUniqueId3", forKey: "uid")
+        
         
         do {
             try viewContext.save()
