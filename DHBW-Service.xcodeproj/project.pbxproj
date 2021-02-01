@@ -31,6 +31,7 @@
 		CDDCF493259203390027CDC5 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CDDCF495259203390027CDC5 /* Localizable.strings */; };
 		CDDCF4A2259203B40027CDC5 /* General.strings in Resources */ = {isa = PBXBuildFile; fileRef = CDDCF4A4259203B40027CDC5 /* General.strings */; };
 		CDEA70B225C6054F001CFE28 /* LecturePlanList.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDEA70B125C6054F001CFE28 /* LecturePlanList.swift */; };
+		CDEA70C025C85999001CFE28 /* LecturePlanItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDEA70BF25C85999001CFE28 /* LecturePlanItem.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,6 +84,7 @@
 		CDDCF4A3259203B40027CDC5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/General.strings; sourceTree = "<group>"; };
 		CDDCF4A8259203B80027CDC5 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/General.strings; sourceTree = "<group>"; };
 		CDEA70B125C6054F001CFE28 /* LecturePlanList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LecturePlanList.swift; sourceTree = "<group>"; };
+		CDEA70BF25C85999001CFE28 /* LecturePlanItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LecturePlanItem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -257,6 +259,7 @@
 				CDCD721925912E1200FBF2F5 /* HomeView.swift */,
 				CDD39B4A259A64150078D05F /* SettingsMain.swift */,
 				CDEA70B125C6054F001CFE28 /* LecturePlanList.swift */,
+				CDEA70BF25C85999001CFE28 /* LecturePlanItem.swift */,
 				CD730A33259A85F500E0BB69 /* SettingsSubViews */,
 			);
 			path = Tabs;
@@ -441,6 +444,7 @@
 				CD9FAB83258EC60200D6D0C5 /* ContentView.swift in Sources */,
 				CDCD72242591316500FBF2F5 /* LocalSettings.swift in Sources */,
 				CD8555BE25C47AE500C4ACD6 /* RaPlaFetcher.swift in Sources */,
+				CDEA70C025C85999001CFE28 /* LecturePlanItem.swift in Sources */,
 				CD8555C325C47B5300C4ACD6 /* ApiService.swift in Sources */,
 				CD9FAB8D258EC60600D6D0C5 /* DHBW_Service.xcdatamodeld in Sources */,
 				CDCD721A25912E1200FBF2F5 /* HomeView.swift in Sources */,

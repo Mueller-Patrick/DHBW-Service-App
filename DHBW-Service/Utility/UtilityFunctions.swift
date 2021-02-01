@@ -9,13 +9,16 @@ import Foundation
 import CoreData
 
 class UtilityFunctions {
-    public class func getCoreDataObject(entity: String, sortDescriptors: [NSSortDescriptor]) -> [NSManagedObject]{
+    public class func getCoreDataObject(entity: String, sortDescriptors: [NSSortDescriptor] = [], searchPredicate: NSPredicate? = nil) -> [NSManagedObject]{
         let managedContext =
             PersistenceController.shared.context
         
         let fetchRequest =
           NSFetchRequest<NSManagedObject>(entityName: entity)
         fetchRequest.sortDescriptors = sortDescriptors
+        if(searchPredicate != nil) {
+            fetchRequest.predicate = searchPredicate
+        }
         
         do {
             return try managedContext.fetch(fetchRequest)

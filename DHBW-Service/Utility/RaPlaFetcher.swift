@@ -134,6 +134,9 @@ class RaPlaFetcher {
             } else {
                 let entity = NSEntityDescription.entity(forEntityName: "RaPlaEvent", in: PersistenceController.shared.context)!
                 evt = NSManagedObject(entity: entity, insertInto: PersistenceController.shared.context)
+                
+                // Set default values for new object
+                evt.setValue(false, forKey: "isHidden")
             }
             evt.setValue(event.startDate, forKey: "startDate")
             evt.setValue(event.endDate, forKey: "endDate")
@@ -150,7 +153,6 @@ class RaPlaFetcher {
                 // Locally stored event does not exist in RaPla anymore, delete it
                 let evt = existingEventsDict[localUid]
                 PersistenceController.shared.context.delete(evt!)
-                print("Deleted " + localUid)
             }
         }
         
