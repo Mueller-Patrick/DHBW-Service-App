@@ -1,0 +1,13 @@
+/*
+  HomeView.strings
+  DHBW-Service
+
+  Created by Patrick Müller on 02.02.21.
+  
+*/
+
+"today" = "Heute";
+"tomorrow" = "Morgen";
+"upcomingExams" = "Nächste Klausuren";
+"noLectures" = "Keine Vorlesungen";
+"noExams" = "Keine Klausuren";

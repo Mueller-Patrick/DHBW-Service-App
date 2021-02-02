@@ -18,9 +18,9 @@ struct FirstOpeningSettings: View {
     
     var body: some View {
         VStack {
-            Text("welcomeText".localized(tableName: "General", plural: false))
+            Text("welcomeText".localized(tableName: "General"))
             
-            TextField("name".localized(tableName: "General", plural: false), text: self.$name)
+            TextField("name".localized(tableName: "General"), text: self.$name)
                 .overlay(RoundedRectangle(cornerRadius: 10).stroke(invalidInputName ? Color.red : Color.secondary, lineWidth: 1))
                 .foregroundColor(invalidInputName ? .red : .primary)
                 .textContentType(.name)
@@ -28,7 +28,7 @@ struct FirstOpeningSettings: View {
                 .frame(minWidth: 200, idealWidth: nil, maxWidth: 500, minHeight: nil, idealHeight: nil, maxHeight: nil, alignment: .center)
                 .padding(.horizontal)
             
-            TextField("course".localized(tableName: "General", plural: false), text: self.$course)
+            TextField("course".localized(tableName: "General"), text: self.$course)
                 .overlay(RoundedRectangle(cornerRadius: 10).stroke(invalidInputCourse ? Color.red : Color.secondary, lineWidth: 1))
                 .onChange(of: course, perform: { value in
                     self.setDirector()
@@ -40,7 +40,7 @@ struct FirstOpeningSettings: View {
                 .frame(minWidth: 200, idealWidth: nil, maxWidth: 500, minHeight: nil, idealHeight: nil, maxHeight: nil, alignment: .center)
                 .padding(.horizontal)
             
-            TextField("director".localized(tableName: "General", plural: false) + " (" +  "filledAuto".localized(tableName: "General", plural: false) + ")", text: self.$director)
+            TextField("director".localized(tableName: "General") + " (" +  "filledAuto".localized(tableName: "General") + ")", text: self.$director)
                 .foregroundColor(.primary)
                 .textContentType(.name)
                 .textFieldStyle(RoundedBorderTextFieldStyle())

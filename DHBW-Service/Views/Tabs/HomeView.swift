@@ -38,43 +38,43 @@ struct HomeView: View {
                     Spacer()
                     
                     VStack {
-                        Text("Today")
+                        Text("today".localized(tableName: "HomeView"))
                             .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
                             .frame(maxWidth: .infinity)
                         VStack {
-                            if(todaysEvents.count > 0){
+                            if(!todaysEvents.isEmpty){
                                 ForEach(todaysEvents, id: \.self) { exam in
                                     Text(exam.value(forKey: "summary") as! String)
                                 }
                             } else {
-                                Text("No lectures")
+                                Text("noLectures".localized(tableName: "HomeView"))
                             }
                         }
                     }
                     .padding()
                     .overlay(
-                            RoundedRectangle(cornerRadius: 10)
-                                .stroke(Color.blue, lineWidth: 4)
+                        RoundedRectangle(cornerRadius: 10)
+                            .stroke(Color.blue, lineWidth: 4)
                     )
                     
                     VStack {
-                        Text("Tomorrow")
+                        Text("tomorrow".localized(tableName: "HomeView"))
                             .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
                             .frame(maxWidth: .infinity)
                         VStack {
-                            if(tomorrowsEvents.count > 0){
+                            if(!tomorrowsEvents.isEmpty){
                                 ForEach(tomorrowsEvents, id: \.self) { exam in
                                     Text(exam.value(forKey: "summary") as! String)
                                 }
                             } else {
-                                Text("No lectures")
+                                Text("noLectures".localized(tableName: "HomeView"))
                             }
                         }
                     }
                     .padding()
                     .overlay(
-                            RoundedRectangle(cornerRadius: 10)
-                                .stroke(Color.blue, lineWidth: 4)
+                        RoundedRectangle(cornerRadius: 10)
+                            .stroke(Color.blue, lineWidth: 4)
                     )
                     
                     Spacer()
@@ -85,23 +85,23 @@ struct HomeView: View {
                     Spacer()
                     
                     VStack {
-                        Text("Upcoming exams")
+                        Text("upcomingExams".localized(tableName: "HomeView"))
                             .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
                             .frame(maxWidth: .infinity)
                         VStack {
-                            if(upcomingExams.count > 0){
+                            if(!upcomingExams.isEmpty){
                                 ForEach(upcomingExams, id: \.self) { exam in
                                     Text(exam.value(forKey: "summary") as! String)
                                 }
                             } else {
-                                Text("No exams")
+                                Text("noExams".localized(tableName: "HomeView"))
                             }
                         }
                     }
                     .padding()
                     .overlay(
-                            RoundedRectangle(cornerRadius: 10)
-                                .stroke(Color.red, lineWidth: 4)
+                        RoundedRectangle(cornerRadius: 10)
+                            .stroke(Color.red, lineWidth: 4)
                     )
                     
                     Spacer()
@@ -136,7 +136,7 @@ extension HomeView{
         predicates.append(contentsOf: getDayPredicates(today: true))
         let compoundPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: predicates)
         let events = UtilityFunctions.getCoreDataObject(entity: "RaPlaEvent", searchPredicate: compoundPredicate)
-        if(events.count > 0) {
+        if(!events.isEmpty) {
             return Array(events[...min(1, events.count-1)])
         } else {
             return []
@@ -150,7 +150,7 @@ extension HomeView{
         predicates.append(contentsOf: getDayPredicates(tomorrow: true))
         let compoundPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: predicates)
         let events = UtilityFunctions.getCoreDataObject(entity: "RaPlaEvent", searchPredicate: compoundPredicate)
-        if(events.count > 0) {
+        if(!events.isEmpty) {
             return Array(events[...min(1, events.count-1)])
         } else {
             return []
@@ -164,7 +164,7 @@ extension HomeView{
         let sectionSortDescriptor = NSSortDescriptor(key: "startDate", ascending: true)
         let sortDescriptors = [sectionSortDescriptor]
         let events = UtilityFunctions.getCoreDataObject(entity: "RaPlaEvent", sortDescriptors: sortDescriptors, searchPredicate: compoundPredicate)
-        if(events.count > 0) {
+        if(!events.isEmpty) {
             return Array(events[...min(1, events.count-1)])
         } else {
             return []

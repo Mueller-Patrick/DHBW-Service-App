@@ -24,7 +24,7 @@ private class Localizer {
 }
 
 extension String {
-    func localized(tableName: String = "Localizable", plural: Bool) -> String {
+    func localized(tableName: String = "Localizable", plural: Bool = false) -> String {
         return Localizer.sharedInstance.localize(string: self, tableName: tableName, plural: plural)
     }
 }
