@@ -38,12 +38,17 @@ struct HomeView: View {
                     Spacer()
                     
                     VStack {
-                        Text("Today's events")
+                        Text("Today")
                             .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
                             .frame(maxWidth: .infinity)
                         VStack {
-                            Text("Evt 1")
-                            Text("Evt 2")
+                            if(todaysEvents.count > 0){
+                                ForEach(todaysEvents, id: \.self) { exam in
+                                    Text(exam.value(forKey: "summary") as! String)
+                                }
+                            } else {
+                                Text("No lectures")
+                            }
                         }
                     }
                     .padding()
@@ -53,12 +58,17 @@ struct HomeView: View {
                     )
                     
                     VStack {
-                        Text("Tomorrow's events")
+                        Text("Tomorrow")
                             .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
                             .frame(maxWidth: .infinity)
                         VStack {
-                            Text("Evt 1")
-                            Text("Evt 2")
+                            if(tomorrowsEvents.count > 0){
+                                ForEach(tomorrowsEvents, id: \.self) { exam in
+                                    Text(exam.value(forKey: "summary") as! String)
+                                }
+                            } else {
+                                Text("No lectures")
+                            }
                         }
                     }
                     .padding()
@@ -79,8 +89,12 @@ struct HomeView: View {
                             .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
                             .frame(maxWidth: .infinity)
                         VStack {
-                            ForEach(upcomingExams, id: \.self) { exam in
-                                Text(exam.value(forKey: "summary") as! String)
+                            if(upcomingExams.count > 0){
+                                ForEach(upcomingExams, id: \.self) { exam in
+                                    Text(exam.value(forKey: "summary") as! String)
+                                }
+                            } else {
+                                Text("No exams")
                             }
                         }
                     }
@@ -96,6 +110,8 @@ struct HomeView: View {
             .navigationBarTitle(Text("Home"))
         }.onAppear{
             self.readFromCoreData()
+            self.todaysEvents = getTodaysEvents()
+            self.tomorrowsEvents = getTomorrowsEvents()
             self.upcomingExams = getUpcomingExams()
         }
     }
@@ -114,15 +130,31 @@ extension HomeView{
     }
     
     func getTodaysEvents() -> [NSManagedObject] {
-//        let searchPredicate = NSPredicate(format: "(category == 'Lehrveranstaltung') AND (startDate = %@)", Date())
-//        return Array(UtilityFunctions.getCoreDataObject(entity: "RaPlaEvent", searchPredicate: searchPredicate)[0...1])
-        return []
+        let searchPredicate = NSPredicate(format: "(category == 'Lehrveranstaltung')")
+        let hiddenPredicate = NSPredicate(format: "isHidden == NO")
+        var predicates = [searchPredicate, hiddenPredicate]
+        predicates.append(contentsOf: getDayPredicates(today: true))
+        let compoundPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: predicates)
+        let events = UtilityFunctions.getCoreDataObject(entity: "RaPlaEvent", searchPredicate: compoundPredicate)
+        if(events.count > 0) {
+            return Array(events[...min(1, events.count-1)])
+        } else {
+            return []
+        }
     }
     
     func getTomorrowsEvents() -> [NSManagedObject] {
-//        let searchPredicate = NSPredicate(format: "(category == 'Lehrveranstaltung') AND (startDate = %@)", Date().)
-//        return Array(UtilityFunctions.getCoreDataObject(entity: "RaPlaEvent", searchPredicate: searchPredicate)[0...1])
-        return []
+        let searchPredicate = NSPredicate(format: "(category == 'Lehrveranstaltung')")
+        let hiddenPredicate = NSPredicate(format: "isHidden == NO")
+        var predicates = [searchPredicate, hiddenPredicate]
+        predicates.append(contentsOf: getDayPredicates(tomorrow: true))
+        let compoundPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: predicates)
+        let events = UtilityFunctions.getCoreDataObject(entity: "RaPlaEvent", searchPredicate: compoundPredicate)
+        if(events.count > 0) {
+            return Array(events[...min(1, events.count-1)])
+        } else {
+            return []
+        }
     }
     
     func getUpcomingExams() -> [NSManagedObject] {
@@ -133,10 +165,32 @@ extension HomeView{
         let sortDescriptors = [sectionSortDescriptor]
         let events = UtilityFunctions.getCoreDataObject(entity: "RaPlaEvent", sortDescriptors: sortDescriptors, searchPredicate: compoundPredicate)
         if(events.count > 0) {
-            return Array(events[0...min(1, events.count)])
+            return Array(events[...min(1, events.count-1)])
         } else {
             return []
         }
+    }
+    
+    func getDayPredicates(today: Bool = false, tomorrow: Bool = false) -> [NSPredicate] {
+        var calendar = Calendar.current
+        calendar.timeZone = NSTimeZone.local
+        
+        var dateFrom = Date()
+        var dateTo = Date()
+        if(today) {
+            //Get today's beginning & end
+            dateFrom = calendar.startOfDay(for: Date())
+            dateTo = calendar.date(byAdding: .day, value: 1, to: dateFrom)!
+        } else if (tomorrow) {
+            dateFrom = calendar.startOfDay(for: Date())
+            dateFrom = calendar.date(byAdding: .day, value: 1, to: dateFrom)!
+            dateTo = calendar.date(byAdding: .day, value: 2, to: dateFrom)!
+        }
+        
+        let fromPredicate = NSPredicate(format: "startDate >= %@", dateFrom as NSDate)
+        let toPredicate = NSPredicate(format: "startDate < %@", dateTo as NSDate)
+        
+        return [fromPredicate, toPredicate]
     }
 }
 
