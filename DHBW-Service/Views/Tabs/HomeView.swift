@@ -32,6 +32,10 @@ struct HomeView: View {
                     Text("director".localized(tableName: "General", plural: false) + ": ")
                     Text(self.director)
                 }
+                HStack {
+                    Text("Next Theory Phase: ")
+                    Text(getNextTheoryPhaseStartDate())
+                }
                 
                 // Upcoming events section
                 HStack {
@@ -52,9 +56,9 @@ struct HomeView: View {
                         }
                     }
                     .padding()
-                    .overlay(
+                    .background(
                         RoundedRectangle(cornerRadius: 10)
-                            .stroke(Color.blue, lineWidth: 4)
+                            .fill(Color.gray)
                     )
                     
                     VStack {
@@ -72,9 +76,9 @@ struct HomeView: View {
                         }
                     }
                     .padding()
-                    .overlay(
+                    .background(
                         RoundedRectangle(cornerRadius: 10)
-                            .stroke(Color.blue, lineWidth: 4)
+                            .fill(Color.gray)
                     )
                     
                     Spacer()
@@ -99,6 +103,10 @@ struct HomeView: View {
                         }
                     }
                     .padding()
+                    .background(
+                        RoundedRectangle(cornerRadius: 10)
+                            .fill(Color.gray)
+                    )
                     .overlay(
                         RoundedRectangle(cornerRadius: 10)
                             .stroke(Color.red, lineWidth: 4)
@@ -118,6 +126,7 @@ struct HomeView: View {
 }
 
 extension HomeView{
+    // Read required data from CoreData and save it to the appropriate variables
     func readFromCoreData() {
         let fetchedData = UtilityFunctions.getCoreDataObject(entity: "User")
         
@@ -129,6 +138,8 @@ extension HomeView{
         }
     }
     
+    // Get 0...2 of todays lectures from RaPla
+    // Returns a list of RaPlaEvent NSManagedObjects
     func getTodaysEvents() -> [NSManagedObject] {
         let searchPredicate = NSPredicate(format: "(category == 'Lehrveranstaltung')")
         let hiddenPredicate = NSPredicate(format: "isHidden == NO")
@@ -143,6 +154,8 @@ extension HomeView{
         }
     }
     
+    // Get 0...2 of tomorrows lectures from RaPla
+    // Returns a list of RaPlaEvent NSManagedObjects
     func getTomorrowsEvents() -> [NSManagedObject] {
         let searchPredicate = NSPredicate(format: "(category == 'Lehrveranstaltung')")
         let hiddenPredicate = NSPredicate(format: "isHidden == NO")
@@ -157,6 +170,8 @@ extension HomeView{
         }
     }
     
+    // Get 0...2 of upcoming exams from RaPla
+    // Returns a list of RaPlaEvent NSManagedObjects
     func getUpcomingExams() -> [NSManagedObject] {
         let searchPredicate = NSPredicate(format: "category == %@", "Prüfung")
         let hiddenPredicate = NSPredicate(format: "isHidden == NO")
@@ -171,6 +186,7 @@ extension HomeView{
         }
     }
     
+    // Get the required NSPredicates to fetch only RaPla events with a start date that is today
     func getDayPredicates(today: Bool = false, tomorrow: Bool = false) -> [NSPredicate] {
         var calendar = Calendar.current
         calendar.timeZone = NSTimeZone.local
@@ -191,6 +207,30 @@ extension HomeView{
         let toPredicate = NSPredicate(format: "startDate < %@", dateTo as NSDate)
         
         return [fromPredicate, toPredicate]
+    }
+    
+    // Get the formatted date when the next theory phase starts
+    func getNextTheoryPhaseStartDate() -> String {
+        var calendar = Calendar.current
+        calendar.timeZone = NSTimeZone.local
+        let categoryPredicate = NSPredicate(format: "category == %@", "Sonstiger Termin")
+        let datePredicate = NSPredicate(format: "startDate >= %@", calendar.startOfDay(for: Date()) as NSDate)
+        let titlePredicate = NSPredicate(format: "summary CONTAINS[cd] %@", "beginn")
+        let compoundPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [categoryPredicate, datePredicate, titlePredicate])
+        
+        let sectionSortDescriptor = NSSortDescriptor(key: "startDate", ascending: true)
+        let sortDescriptors = [sectionSortDescriptor]
+        
+        let events = UtilityFunctions.getCoreDataObject(entity: "RaPlaEvent", sortDescriptors: sortDescriptors, searchPredicate: compoundPredicate)
+        
+        if(!events.isEmpty) {
+            let date = events[0].value(forKey: "startDate") as! Date
+            let formatter = DateFormatter()
+            formatter.dateStyle = .short
+            return formatter.string(from: date)
+        } else {
+            return "N/A"
+        }
     }
 }
 

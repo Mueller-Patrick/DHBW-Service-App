@@ -45,7 +45,7 @@ class UtilityFunctions {
     }
     
     public class func deleteAllData() -> Bool {
-        let entities = ["User", "Item"]
+        let entities = ["User", "RaPlaEvent"]
         var allSuccessful = true
         
         for entityName in entities {
