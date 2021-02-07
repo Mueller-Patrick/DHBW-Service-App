@@ -14,45 +14,61 @@ struct LecturePlanItem: View {
     
     var body: some View {
         VStack {
-            VStack {
-                Text(event.value(forKey: "summary") as! String)
-                .font(.title3)
-                .frame(maxWidth: .infinity, alignment: .leading)
             HStack {
-                VStack(alignment: .leading) {
-                    Text("When")
-                    Text("Where")
-                }
-                VStack(alignment: .leading) {
-                    Text(getDateAsString(date: event.value(forKey: "startDate") as! Date) )
+                Spacer()
+                VStack {
+                    Text(event.value(forKey: "summary") as! String)
+                        .font(.title3)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                    Text(event.value(forKey: "descr") as! String)
                         .bold()
-                    Text(event.value(forKey: "location") as! String)
-                        .bold()
-                }.frame(maxWidth: .infinity, alignment: .leading)
-            }
-        }
-        .padding()
-        .background(
-            RoundedRectangle(cornerRadius: 10)
-                .fill(Color.gray)
-        )
-            Spacer()
-            Text(event.value(forKey: "summary") as! String)
-            Button(action: {
-                event.setValue(!isHidden, forKey: "isHidden")
-                self.isHidden = !isHidden
-                PersistenceController.shared.save()
-            }){
-                if(self.isHidden){
-                    Text("Show")
-                } else {
-                    Text("Hide")
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                    Divider()
+                    HStack {
+                        VStack(alignment: .leading) {
+                            Text("When")
+                            Text("Where")
+                            Text("Who")
+                        }
+                        VStack(alignment: .leading) {
+                            Text(getDateAndTimeAsString(date: event.value(forKey: "startDate") as! Date)
+                                    + " to "
+                                    + getTimeAsString(date: event.value(forKey: "endDate") as! Date))
+                                .bold()
+                            Text(event.value(forKey: "location") as! String)
+                                .bold()
+                            Text(event.value(forKey: "location") as! String)
+                                .bold()
+                        }.frame(maxWidth: .infinity, alignment: .leading)
+                    }
+                    Divider()
+                    HStack {
+                        Button(action: {
+                            event.setValue(!isHidden, forKey: "isHidden")
+                            self.isHidden = !isHidden
+                            PersistenceController.shared.save()
+                        }){
+                            if(self.isHidden){
+                                Text("Show")
+                            } else {
+                                Text("Hide")
+                            }
+                        }
+                        .padding()
+                        .foregroundColor(.white)
+                        .background(Color.blue)
+                        .cornerRadius(15)
+                        Spacer()
+                    }
                 }
+                .padding()
+                .background(
+                    RoundedRectangle(cornerRadius: 10)
+                        .fill(Color.gray)
+                )
+                Spacer()
             }
-            .padding()
-            .foregroundColor(.white)
-            .background(Color.blue)
-            .cornerRadius(15)
+            .frame(maxWidth: .infinity)
             Spacer()
         }
         .onAppear{
@@ -61,9 +77,18 @@ struct LecturePlanItem: View {
     }
 }
 
-func getDateAsString(date: Date) -> String {
+func getDateAndTimeAsString(date: Date) -> String {
     let formatter = DateFormatter()
     formatter.dateStyle = .short
+    formatter.timeStyle = .short
+    
+    return formatter.string(from: date)
+}
+
+func getTimeAsString(date: Date) -> String {
+    let formatter = DateFormatter()
+    formatter.timeStyle = .short
+    
     return formatter.string(from: date)
 }
 
