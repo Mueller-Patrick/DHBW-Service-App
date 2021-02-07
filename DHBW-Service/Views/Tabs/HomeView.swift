@@ -21,9 +21,23 @@ struct HomeView: View {
         NavigationView {
             VStack {
                 HStack {
-                    Text("name".localized(tableName: "General", plural: false) + ": ")
-                    Text(self.name)
+                    Spacer()
+                    VStack {
+                        Text("hey".localized(tableName: "HomeView", plural: false))
+                            .font(.title3)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                        Text(self.name)
+                            .bold()
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                    }
+                    .padding()
+                    .background(
+                        RoundedRectangle(cornerRadius: 10)
+                            .fill(Color.gray)
+                    )
+                    Spacer()
                 }
+                Spacer()
                 HStack {
                     Text("course".localized(tableName: "General", plural: false) + ": ")
                     Text(self.course)
@@ -43,7 +57,7 @@ struct HomeView: View {
                     
                     VStack {
                         Text("today".localized(tableName: "HomeView"))
-                            .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
+                            .font(.title)
                             .frame(maxWidth: .infinity, alignment: .leading)
                         VStack {
                             if(!todaysEvents.isEmpty){
@@ -65,7 +79,7 @@ struct HomeView: View {
                     
                     VStack {
                         Text("tomorrow".localized(tableName: "HomeView"))
-                            .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
+                            .font(.title)
                             .frame(maxWidth: .infinity, alignment: .leading)
                         VStack {
                             if(!tomorrowsEvents.isEmpty){
@@ -120,6 +134,7 @@ struct HomeView: View {
                     
                     Spacer()
                 }
+                Spacer()
             }
             .navigationBarTitle(Text("Home"))
         }
