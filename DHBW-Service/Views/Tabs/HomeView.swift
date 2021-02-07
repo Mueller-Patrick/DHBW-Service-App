@@ -81,49 +81,11 @@ struct HomeView: View {
                 HStack {
                     Spacer()
                     
-                    VStack {
-                        Text("today".localized(tableName: "HomeView"))
-                            .font(.title)
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                        VStack {
-                            if(!todaysEvents.isEmpty){
-                                ForEach(todaysEvents, id: \.self) { exam in
-                                    Text(exam.value(forKey: "summary") as! String)
-                                        .frame(maxWidth: .infinity, alignment: .leading)
-                                }
-                            } else {
-                                Text("noLectures".localized(tableName: "HomeView"))
-                                    .frame(maxWidth: .infinity, alignment: .leading)
-                            }
-                        }
-                    }
-                    .padding()
-                    .background(
-                        RoundedRectangle(cornerRadius: 10)
-                            .fill(Color.gray)
-                    )
+                    // Todays lectures block
+                    UpcomingLecturesBlock(eventsList: todaysEvents, titleKey: "today")
                     
-                    VStack {
-                        Text("tomorrow".localized(tableName: "HomeView"))
-                            .font(.title)
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                        VStack {
-                            if(!tomorrowsEvents.isEmpty){
-                                ForEach(tomorrowsEvents, id: \.self) { exam in
-                                    Text(exam.value(forKey: "summary") as! String)
-                                        .frame(maxWidth: .infinity, alignment: .leading)
-                                }
-                            } else {
-                                Text("noLectures".localized(tableName: "HomeView"))
-                                    .frame(maxWidth: .infinity, alignment: .leading)
-                            }
-                        }
-                    }
-                    .padding()
-                    .background(
-                        RoundedRectangle(cornerRadius: 10)
-                            .fill(Color.gray)
-                    )
+                    // Tomorrows lectures block
+                    UpcomingLecturesBlock(eventsList: tomorrowsEvents, titleKey: "tomorrow")
                     
                     Spacer()
                 }
@@ -132,31 +94,7 @@ struct HomeView: View {
                 HStack {
                     Spacer()
                     
-                    VStack {
-                        Text("upcomingExams".localized(tableName: "HomeView"))
-                            .font(.title)
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                        VStack {
-                            if(!upcomingExams.isEmpty){
-                                ForEach(upcomingExams, id: \.self) { exam in
-                                    Text(exam.value(forKey: "summary") as! String)
-                                        .frame(maxWidth: .infinity, alignment: .leading)
-                                }
-                            } else {
-                                Text("noExams".localized(tableName: "HomeView"))
-                                    .frame(maxWidth: .infinity, alignment: .leading)
-                            }
-                        }
-                    }
-                    .padding()
-                    .background(
-                        RoundedRectangle(cornerRadius: 10)
-                            .fill(Color.gray)
-                    )
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 10)
-                            .stroke(Color.red, lineWidth: 4)
-                    )
+                    UpcomingExamsBlock(examsList: upcomingExams, titleKey: "upcomingExams")
                     
                     Spacer()
                 }
@@ -280,6 +218,68 @@ extension HomeView{
         } else {
             return "N/A"
         }
+    }
+}
+
+struct UpcomingLecturesBlock: View {
+    let eventsList: [NSManagedObject]
+    let titleKey: String
+    
+    var body: some View {
+        VStack {
+            Text(titleKey.localized(tableName: "HomeView"))
+                .font(.title)
+                .frame(maxWidth: .infinity, alignment: .leading)
+            VStack {
+                if(!eventsList.isEmpty){
+                    ForEach(eventsList, id: \.self) { exam in
+                        Text(exam.value(forKey: "summary") as! String)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                    }
+                } else {
+                    Text("noLectures".localized(tableName: "HomeView"))
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                }
+            }
+        }
+        .padding()
+        .background(
+            RoundedRectangle(cornerRadius: 10)
+                .fill(Color.gray)
+        )
+    }
+}
+
+struct UpcomingExamsBlock: View {
+    let examsList: [NSManagedObject]
+    let titleKey: String
+    
+    var body: some View {
+        VStack {
+            Text(titleKey.localized(tableName: "HomeView"))
+                .font(.title)
+                .frame(maxWidth: .infinity, alignment: .leading)
+            VStack {
+                if(!examsList.isEmpty){
+                    ForEach(examsList, id: \.self) { exam in
+                        Text(exam.value(forKey: "summary") as! String)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                    }
+                } else {
+                    Text("noExams".localized(tableName: "HomeView"))
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                }
+            }
+        }
+        .padding()
+        .background(
+            RoundedRectangle(cornerRadius: 10)
+                .fill(Color.gray)
+        )
+        .overlay(
+            RoundedRectangle(cornerRadius: 10)
+                .stroke(Color.red, lineWidth: 4)
+        )
     }
 }
 
