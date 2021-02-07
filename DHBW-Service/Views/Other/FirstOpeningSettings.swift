@@ -32,6 +32,7 @@ struct FirstOpeningSettings: View {
                 .overlay(RoundedRectangle(cornerRadius: 10).stroke(invalidInputCourse ? Color.red : Color.secondary, lineWidth: 1))
                 .onChange(of: course, perform: { value in
                     self.setDirector()
+                    self.course = self.course.uppercased()
                 })
                 .foregroundColor(invalidInputCourse ? .red : .primary)
                 .textContentType(.name)
