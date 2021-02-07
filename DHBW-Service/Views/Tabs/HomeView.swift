@@ -37,6 +37,32 @@ struct HomeView: View {
                     )
                     Spacer()
                 }
+                HStack {
+                    Spacer()
+                    VStack {
+                        Text("information".localized(tableName: "HomeView", plural: false))
+                            .font(.title3)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                        HStack {
+                            VStack(alignment: .leading) {
+                                Text("course".localized(tableName: "General", plural: false) + ": ")
+                                Text("director".localized(tableName: "General", plural: false) + ": ")
+                            }
+                            VStack(alignment: .leading) {
+                                Text(self.course)
+                                    .bold()
+                                Text(self.director)
+                                    .bold()
+                            }.frame(maxWidth: .infinity, alignment: .leading)
+                        }
+                    }
+                    .padding()
+                    .background(
+                        RoundedRectangle(cornerRadius: 10)
+                            .fill(Color.gray)
+                    )
+                    Spacer()
+                }
                 Spacer()
                 HStack {
                     Text("course".localized(tableName: "General", plural: false) + ": ")
