@@ -55,7 +55,9 @@ struct LecturePlanList: View {
             //                        Text("Switch order")
             //                    }
             //                })
-        }.onAppear{
+        }
+        .navigationViewStyle(StackNavigationViewStyle())
+        .onAppear{
             let sectionSortDescriptor = NSSortDescriptor(key: "startDate", ascending: true)
             let sortDescriptors = [sectionSortDescriptor]
             self.events = []

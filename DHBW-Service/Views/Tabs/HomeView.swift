@@ -44,14 +44,16 @@ struct HomeView: View {
                     VStack {
                         Text("today".localized(tableName: "HomeView"))
                             .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
-                            .frame(maxWidth: .infinity)
+                            .frame(maxWidth: .infinity, alignment: .leading)
                         VStack {
                             if(!todaysEvents.isEmpty){
                                 ForEach(todaysEvents, id: \.self) { exam in
                                     Text(exam.value(forKey: "summary") as! String)
+                                        .frame(maxWidth: .infinity, alignment: .leading)
                                 }
                             } else {
                                 Text("noLectures".localized(tableName: "HomeView"))
+                                    .frame(maxWidth: .infinity, alignment: .leading)
                             }
                         }
                     }
@@ -64,14 +66,16 @@ struct HomeView: View {
                     VStack {
                         Text("tomorrow".localized(tableName: "HomeView"))
                             .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
-                            .frame(maxWidth: .infinity)
+                            .frame(maxWidth: .infinity, alignment: .leading)
                         VStack {
                             if(!tomorrowsEvents.isEmpty){
                                 ForEach(tomorrowsEvents, id: \.self) { exam in
                                     Text(exam.value(forKey: "summary") as! String)
+                                        .frame(maxWidth: .infinity, alignment: .leading)
                                 }
                             } else {
                                 Text("noLectures".localized(tableName: "HomeView"))
+                                    .frame(maxWidth: .infinity, alignment: .leading)
                             }
                         }
                     }
@@ -91,14 +95,16 @@ struct HomeView: View {
                     VStack {
                         Text("upcomingExams".localized(tableName: "HomeView"))
                             .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
-                            .frame(maxWidth: .infinity)
+                            .frame(maxWidth: .infinity, alignment: .leading)
                         VStack {
                             if(!upcomingExams.isEmpty){
                                 ForEach(upcomingExams, id: \.self) { exam in
                                     Text(exam.value(forKey: "summary") as! String)
+                                        .frame(maxWidth: .infinity, alignment: .leading)
                                 }
                             } else {
                                 Text("noExams".localized(tableName: "HomeView"))
+                                    .frame(maxWidth: .infinity, alignment: .leading)
                             }
                         }
                     }
@@ -116,7 +122,9 @@ struct HomeView: View {
                 }
             }
             .navigationBarTitle(Text("Home"))
-        }.onAppear{
+        }
+        .navigationViewStyle(StackNavigationViewStyle())
+        .onAppear{
             self.readFromCoreData()
             self.todaysEvents = getTodaysEvents()
             self.tomorrowsEvents = getTomorrowsEvents()

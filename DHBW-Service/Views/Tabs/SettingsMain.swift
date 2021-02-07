@@ -30,6 +30,7 @@ struct SettingsMain: View {
             .navigationTitle("settings".localized(tableName: "General", plural: false))
             .listStyle(GroupedListStyle())
         }
+        .navigationViewStyle(StackNavigationViewStyle())
         .alert(isPresented: $showLogoutConfirmationAlert, content: {
             Alert(
                 title: Text("logout".localized(tableName: "General", plural: false)),
