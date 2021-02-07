@@ -70,6 +70,7 @@ struct LecturePlanList_Previews: PreviewProvider {
     static var previews: some View {
         LecturePlanList()
             .preferredColorScheme(.dark)
+            .previewDevice("iPhone 12")
             .environmentObject(getFirstOpening())
             .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
     }

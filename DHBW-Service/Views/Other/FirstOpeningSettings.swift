@@ -137,6 +137,7 @@ struct FirstOpeningSettings_Previews: PreviewProvider {
     static var previews: some View {
         FirstOpeningSettings()
             .preferredColorScheme(.dark)
+            .previewDevice("iPhone 12")
             .environmentObject(getFirstOpening())
             .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
     }

@@ -43,7 +43,7 @@ struct HomeView: View {
                     
                     VStack {
                         Text("today".localized(tableName: "HomeView"))
-                            .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
+                            .font(.title)
                             .frame(maxWidth: .infinity, alignment: .leading)
                         VStack {
                             if(!todaysEvents.isEmpty){
@@ -65,7 +65,7 @@ struct HomeView: View {
                     
                     VStack {
                         Text("tomorrow".localized(tableName: "HomeView"))
-                            .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
+                            .font(.title)
                             .frame(maxWidth: .infinity, alignment: .leading)
                         VStack {
                             if(!tomorrowsEvents.isEmpty){
@@ -94,7 +94,7 @@ struct HomeView: View {
                     
                     VStack {
                         Text("upcomingExams".localized(tableName: "HomeView"))
-                            .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
+                            .font(.title)
                             .frame(maxWidth: .infinity, alignment: .leading)
                         VStack {
                             if(!upcomingExams.isEmpty){
@@ -246,6 +246,7 @@ struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
         HomeView()
             .preferredColorScheme(.dark)
+            .previewDevice("iPhone 12")
             .environmentObject(getFirstOpening())
             .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
     }

@@ -55,6 +55,7 @@ struct SettingsMain_Previews: PreviewProvider {
     static var previews: some View {
         SettingsMain()
             .preferredColorScheme(.dark)
+            .previewDevice("iPhone 12")
             .environmentObject(getFirstOpening())
             .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
     }

@@ -24,6 +24,7 @@ struct SettingsAcknowledgements_Previews: PreviewProvider {
     static var previews: some View {
         SettingsAcknowledgements()
             .preferredColorScheme(.dark)
+            .previewDevice("iPhone 12")
             .environmentObject(getFirstOpening())
             .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
     }
