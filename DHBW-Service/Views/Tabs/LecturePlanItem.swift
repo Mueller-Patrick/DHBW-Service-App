@@ -14,6 +14,29 @@ struct LecturePlanItem: View {
     
     var body: some View {
         VStack {
+            VStack {
+                Text(event.value(forKey: "summary") as! String)
+                .font(.title3)
+                .frame(maxWidth: .infinity, alignment: .leading)
+            HStack {
+                VStack(alignment: .leading) {
+                    Text("When")
+                    Text("Where")
+                }
+                VStack(alignment: .leading) {
+                    Text(getDateAsString(date: event.value(forKey: "startDate") as! Date) )
+                        .bold()
+                    Text(event.value(forKey: "location") as! String)
+                        .bold()
+                }.frame(maxWidth: .infinity, alignment: .leading)
+            }
+        }
+        .padding()
+        .background(
+            RoundedRectangle(cornerRadius: 10)
+                .fill(Color.gray)
+        )
+            Spacer()
             Text(event.value(forKey: "summary") as! String)
             Button(action: {
                 event.setValue(!isHidden, forKey: "isHidden")
@@ -30,11 +53,18 @@ struct LecturePlanItem: View {
             .foregroundColor(.white)
             .background(Color.blue)
             .cornerRadius(15)
+            Spacer()
         }
         .onAppear{
             self.isHidden = event.value(forKey: "isHidden") as! Bool
         }
     }
+}
+
+func getDateAsString(date: Date) -> String {
+    let formatter = DateFormatter()
+    formatter.dateStyle = .short
+    return formatter.string(from: date)
 }
 
 struct LecturePlanItem_Previews: PreviewProvider {
