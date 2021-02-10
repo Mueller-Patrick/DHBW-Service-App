@@ -11,6 +11,8 @@ import CoreData
 
 @objc(RaPlaEvent)
 public class RaPlaEvent: NSManagedObject {
+    
+    // MARK: Access methods
     @nonobjc public class func getAll() -> [RaPlaEvent] {
         let managedContext =
             PersistenceController.shared.context
@@ -39,6 +41,14 @@ public class RaPlaEvent: NSManagedObject {
         } catch let error as NSError {
             print("Could not fetch. \(error), \(error.userInfo)")
             return []
+        }
+    }
+    
+    // MARK: Wrappers
+    public var lecturerList: [Lecturer] {
+        let set = lecturers as? Set<Lecturer> ?? []
+        return set.sorted {
+            $0.wrappedName < $1.wrappedName
         }
     }
 }

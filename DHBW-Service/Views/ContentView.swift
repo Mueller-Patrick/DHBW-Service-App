@@ -47,7 +47,7 @@ struct ContentView: View {
         }
         .onAppear{
             // Called upon the opening of the app
-            RaPlaFetcher.getRaplaFileAndSaveToCoreData(from: "https://rapla.dhbw-karlsruhe.de/rapla?page=ical&user=eisenbiegler&file=TINF20B4")
+            RaPlaFetcher.getRaplaFileAndSaveToCoreData(from: "https://rapla.dhbw-karlsruhe.de/rapla?page=ical&user=eisenbiegler&file=TINF19B4")
         }
     }
 }

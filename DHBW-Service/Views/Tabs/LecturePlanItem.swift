@@ -37,7 +37,7 @@ struct LecturePlanItem: View {
                                 .bold()
                             Text(event.location!)
                                 .bold()
-                            Text("WIP")
+                            Text(!event.lecturerList.isEmpty ? event.lecturerList[0].wrappedName : "")
                                 .bold()
                         }.frame(maxWidth: .infinity, alignment: .leading)
                     }

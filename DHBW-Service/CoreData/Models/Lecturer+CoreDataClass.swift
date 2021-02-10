@@ -11,6 +11,7 @@ import CoreData
 
 @objc(Lecturer)
 public class Lecturer: NSManagedObject {
+    // MARK: Access methods
     @nonobjc public class func getAll() -> [Lecturer] {
         let managedContext =
             PersistenceController.shared.context
@@ -40,5 +41,14 @@ public class Lecturer: NSManagedObject {
             print("Could not fetch. \(error), \(error.userInfo)")
             return []
         }
+    }
+    
+    // MARK: Wrappers
+    public var wrappedName: String {
+        name ?? ""
+    }
+    
+    public var wrappedEmail: String {
+        email ?? ""
     }
 }
