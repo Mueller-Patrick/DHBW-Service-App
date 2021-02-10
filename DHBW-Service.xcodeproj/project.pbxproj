@@ -12,6 +12,7 @@
 		CD2FC0C625A869FE00963178 /* dhbw-standard-icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD2FC0C125A869FE00963178 /* dhbw-standard-icon@3x.png */; };
 		CD2FC0C725A869FE00963178 /* alpaca-alt-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD2FC0C325A869FE00963178 /* alpaca-alt-icon@2x.png */; };
 		CD2FC0C825A869FE00963178 /* alpaca-alt-icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD2FC0C425A869FE00963178 /* alpaca-alt-icon@3x.png */; };
+		CD67FB2A25D45A3300069CDB /* RaPlaEvent+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD67FB2925D45A3300069CDB /* RaPlaEvent+CoreDataProperties.swift */; };
 		CD730A35259A860E00E0BB69 /* SettingsAcknowledgements.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD730A34259A860E00E0BB69 /* SettingsAcknowledgements.swift */; };
 		CD8555BE25C47AE500C4ACD6 /* RaPlaFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8555BD25C47AE500C4ACD6 /* RaPlaFetcher.swift */; };
 		CD8555C325C47B5300C4ACD6 /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8555C225C47B5300C4ACD6 /* ApiService.swift */; };
@@ -23,10 +24,15 @@
 		CD9FAB8D258EC60600D6D0C5 /* DHBW_Service.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CD9FAB8B258EC60600D6D0C5 /* DHBW_Service.xcdatamodeld */; };
 		CD9FAB98258EC60600D6D0C5 /* DHBW_ServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9FAB97258EC60600D6D0C5 /* DHBW_ServiceTests.swift */; };
 		CD9FABA3258EC60600D6D0C5 /* DHBW_ServiceUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9FABA2258EC60600D6D0C5 /* DHBW_ServiceUITests.swift */; };
+		CDA1CBAE25D4591000DB2AE5 /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA1CBA825D4591000DB2AE5 /* User+CoreDataProperties.swift */; };
+		CDA1CBB025D4591000DB2AE5 /* Lecturer+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA1CBAA25D4591000DB2AE5 /* Lecturer+CoreDataProperties.swift */; };
 		CDCD721A25912E1200FBF2F5 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCD721925912E1200FBF2F5 /* HomeView.swift */; };
 		CDCD72242591316500FBF2F5 /* LocalSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCD72232591316500FBF2F5 /* LocalSettings.swift */; };
 		CDCD7230259135C500FBF2F5 /* FirstOpeningSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCD722F259135C500FBF2F5 /* FirstOpeningSettings.swift */; };
 		CDD39B4B259A64150078D05F /* SettingsMain.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD39B4A259A64150078D05F /* SettingsMain.swift */; };
+		CDD970DD25D453D90061755E /* User+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD970D725D453D90061755E /* User+CoreDataClass.swift */; };
+		CDD970DF25D453D90061755E /* Lecturer+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD970D925D453D90061755E /* Lecturer+CoreDataClass.swift */; };
+		CDD970E125D453D90061755E /* RaPlaEvent+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD970DB25D453D90061755E /* RaPlaEvent+CoreDataClass.swift */; };
 		CDDCF47B2591FE550027CDC5 /* UtilityFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDDCF47A2591FE550027CDC5 /* UtilityFunctions.swift */; };
 		CDDCF4842592028A0027CDC5 /* Localizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDDCF4832592028A0027CDC5 /* Localizer.swift */; };
 		CDDCF493259203390027CDC5 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CDDCF495259203390027CDC5 /* Localizable.strings */; };
@@ -59,6 +65,7 @@
 		CD2FC0C125A869FE00963178 /* dhbw-standard-icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dhbw-standard-icon@3x.png"; sourceTree = "<group>"; };
 		CD2FC0C325A869FE00963178 /* alpaca-alt-icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "alpaca-alt-icon@2x.png"; sourceTree = "<group>"; };
 		CD2FC0C425A869FE00963178 /* alpaca-alt-icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "alpaca-alt-icon@3x.png"; sourceTree = "<group>"; };
+		CD67FB2925D45A3300069CDB /* RaPlaEvent+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RaPlaEvent+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		CD730A34259A860E00E0BB69 /* SettingsAcknowledgements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsAcknowledgements.swift; sourceTree = "<group>"; };
 		CD8555BD25C47AE500C4ACD6 /* RaPlaFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RaPlaFetcher.swift; sourceTree = "<group>"; };
 		CD8555C225C47B5300C4ACD6 /* ApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
@@ -76,10 +83,15 @@
 		CD9FAB9E258EC60600D6D0C5 /* DHBW-ServiceUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "DHBW-ServiceUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD9FABA2258EC60600D6D0C5 /* DHBW_ServiceUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DHBW_ServiceUITests.swift; sourceTree = "<group>"; };
 		CD9FABA4258EC60600D6D0C5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CDA1CBA825D4591000DB2AE5 /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "User+CoreDataProperties.swift"; path = "DHBW-Service/CoreData/Models/User+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
+		CDA1CBAA25D4591000DB2AE5 /* Lecturer+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Lecturer+CoreDataProperties.swift"; path = "DHBW-Service/CoreData/Models/Lecturer+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
 		CDCD721925912E1200FBF2F5 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		CDCD72232591316500FBF2F5 /* LocalSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalSettings.swift; sourceTree = "<group>"; };
 		CDCD722F259135C500FBF2F5 /* FirstOpeningSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstOpeningSettings.swift; sourceTree = "<group>"; };
 		CDD39B4A259A64150078D05F /* SettingsMain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsMain.swift; sourceTree = "<group>"; };
+		CDD970D725D453D90061755E /* User+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+CoreDataClass.swift"; sourceTree = "<group>"; };
+		CDD970D925D453D90061755E /* Lecturer+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Lecturer+CoreDataClass.swift"; sourceTree = "<group>"; };
+		CDD970DB25D453D90061755E /* RaPlaEvent+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RaPlaEvent+CoreDataClass.swift"; sourceTree = "<group>"; };
 		CDDCF47A2591FE550027CDC5 /* UtilityFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilityFunctions.swift; sourceTree = "<group>"; };
 		CDDCF4832592028A0027CDC5 /* Localizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localizer.swift; sourceTree = "<group>"; };
 		CDDCF494259203390027CDC5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -115,6 +127,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CD1ED26325D33B590030B647 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				CDD970D925D453D90061755E /* Lecturer+CoreDataClass.swift */,
+				CDA1CBAA25D4591000DB2AE5 /* Lecturer+CoreDataProperties.swift */,
+				CDD970DB25D453D90061755E /* RaPlaEvent+CoreDataClass.swift */,
+				CD67FB2925D45A3300069CDB /* RaPlaEvent+CoreDataProperties.swift */,
+				CDD970D725D453D90061755E /* User+CoreDataClass.swift */,
+				CDA1CBA825D4591000DB2AE5 /* User+CoreDataProperties.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		CD2FC0BD25A869F000963178 /* res */ = {
 			isa = PBXGroup;
 			children = (
@@ -239,6 +264,7 @@
 		CDCD721125912D5400FBF2F5 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
+				CD1ED26325D33B590030B647 /* Models */,
 				CD9FAB8B258EC60600D6D0C5 /* DHBW_Service.xcdatamodeld */,
 				CD9FAB89258EC60600D6D0C5 /* Persistence.swift */,
 			);
@@ -443,19 +469,25 @@
 			buildActionMask = 2147483647;
 			files = (
 				CDDCF4842592028A0027CDC5 /* Localizer.swift in Sources */,
+				CDD970DF25D453D90061755E /* Lecturer+CoreDataClass.swift in Sources */,
 				CDCD7230259135C500FBF2F5 /* FirstOpeningSettings.swift in Sources */,
+				CDA1CBB025D4591000DB2AE5 /* Lecturer+CoreDataProperties.swift in Sources */,
 				CD9FAB8A258EC60600D6D0C5 /* Persistence.swift in Sources */,
 				CD730A35259A860E00E0BB69 /* SettingsAcknowledgements.swift in Sources */,
 				CD9FAB83258EC60200D6D0C5 /* ContentView.swift in Sources */,
 				CDCD72242591316500FBF2F5 /* LocalSettings.swift in Sources */,
+				CDD970E125D453D90061755E /* RaPlaEvent+CoreDataClass.swift in Sources */,
+				CDD970DD25D453D90061755E /* User+CoreDataClass.swift in Sources */,
 				CD8555BE25C47AE500C4ACD6 /* RaPlaFetcher.swift in Sources */,
 				CDEA70C025C85999001CFE28 /* LecturePlanItem.swift in Sources */,
 				CD8555C325C47B5300C4ACD6 /* ApiService.swift in Sources */,
 				CD9FAB8D258EC60600D6D0C5 /* DHBW_Service.xcdatamodeld in Sources */,
 				CDCD721A25912E1200FBF2F5 /* HomeView.swift in Sources */,
 				CDD39B4B259A64150078D05F /* SettingsMain.swift in Sources */,
+				CD67FB2A25D45A3300069CDB /* RaPlaEvent+CoreDataProperties.swift in Sources */,
 				CDEA70B225C6054F001CFE28 /* LecturePlanList.swift in Sources */,
 				CDDCF47B2591FE550027CDC5 /* UtilityFunctions.swift in Sources */,
+				CDA1CBAE25D4591000DB2AE5 /* User+CoreDataProperties.swift in Sources */,
 				CD9FAB81258EC60200D6D0C5 /* DHBW_ServiceApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
