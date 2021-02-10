@@ -156,10 +156,10 @@ class RaPlaFetcher {
     // Save the given iCalEvent objects to CoreData
     // Updates the events if they already exist and deletes old (/invalid) ones
     private class func saveToCoreData(eventObjects: [iCalEvent]) -> Bool{
-        let existingEvents: [RaPlaEvent] = [] //RaPlaEvent.getAll()
+        let existingEvents: [RaPlaEvent] = RaPlaEvent.getAll()
         var existingEventsDict: [String:RaPlaEvent] = [:]
         for event in existingEvents {
-            existingEventsDict[event.value(forKey: "uid") as! String] = event
+            existingEventsDict[event.uid!] = event
         }
         let newEventUIDs = eventObjects.map{$0.uid}
         
