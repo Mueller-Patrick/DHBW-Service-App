@@ -9,7 +9,7 @@ import SwiftUI
 import CoreData
 
 struct LecturePlanItem: View {
-    @State var event: NSManagedObject
+    @State var event: RaPlaEvent
     @State var isHidden = false
     
     var body: some View {
@@ -17,10 +17,10 @@ struct LecturePlanItem: View {
             HStack {
                 Spacer()
                 VStack {
-                    Text(event.value(forKey: "summary") as! String)
+                    Text(event.summary!)
                         .font(.title3)
                         .frame(maxWidth: .infinity, alignment: .leading)
-                    Text(event.value(forKey: "descr") as! String)
+                    Text(event.descr!)
                         .bold()
                         .frame(maxWidth: .infinity, alignment: .leading)
                     Divider()
@@ -31,20 +31,20 @@ struct LecturePlanItem: View {
                             Text("Who")
                         }
                         VStack(alignment: .leading) {
-                            Text(getDateAndTimeAsString(date: event.value(forKey: "startDate") as! Date)
+                            Text(getDateAndTimeAsString(date: event.startDate!)
                                     + " to "
-                                    + getTimeAsString(date: event.value(forKey: "endDate") as! Date))
+                                    + getTimeAsString(date: event.endDate!))
                                 .bold()
-                            Text(event.value(forKey: "location") as! String)
+                            Text(event.location!)
                                 .bold()
-                            Text(event.value(forKey: "location") as! String)
+                            Text("WIP")
                                 .bold()
                         }.frame(maxWidth: .infinity, alignment: .leading)
                     }
                     Divider()
                     HStack {
                         Button(action: {
-                            event.setValue(!isHidden, forKey: "isHidden")
+                            event.isHidden = !isHidden
                             self.isHidden = !isHidden
                             PersistenceController.shared.save()
                         }){
@@ -72,7 +72,7 @@ struct LecturePlanItem: View {
             Spacer()
         }
         .onAppear{
-            self.isHidden = event.value(forKey: "isHidden") as! Bool
+            self.isHidden = event.isHidden
         }
     }
 }
@@ -107,7 +107,7 @@ struct LecturePlanItem_Previews: PreviewProvider {
         return settings
     }
     
-    static func getPreviewEvent() -> NSManagedObject {
-        return UtilityFunctions.getCoreDataObject(entity: "RaPlaEvent", sortDescriptors: [])[0]
+    static func getPreviewEvent() -> RaPlaEvent {
+        return RaPlaEvent.getSpecified(sortDescriptors: [])[0]
     }
 }

@@ -96,11 +96,10 @@ extension FirstOpeningSettings{
         print("Deleting old user data status: \(status)")
         
         // Insert new user data
-        let entity = NSEntityDescription.entity(forEntityName: "User", in: PersistenceController.shared.context)!
-        let user = NSManagedObject(entity: entity, insertInto: PersistenceController.shared.context)
-        user.setValue(name, forKey: "name")
-        user.setValue(course, forKey: "course")
-        user.setValue(director, forKey: "director")
+        let user = User(context: PersistenceController.shared.context)
+        user.name = name
+        user.course = course
+        user.director = director
         
         self.settings.isFirstOpening = !self.settings.isFirstOpening
         PersistenceController.shared.save()

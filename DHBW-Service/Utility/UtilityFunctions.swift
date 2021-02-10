@@ -9,6 +9,7 @@ import Foundation
 import CoreData
 
 class UtilityFunctions {
+    // DEPRECATED, replaced by the respective getSpecified() method of each CoreData object
     public class func getCoreDataObject(entity: String, sortDescriptors: [NSSortDescriptor] = [], searchPredicate: NSPredicate? = nil) -> [NSManagedObject]{
         let managedContext =
             PersistenceController.shared.context

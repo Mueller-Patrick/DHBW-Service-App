@@ -13,9 +13,9 @@ struct HomeView: View {
     @State private var name: String = ""
     @State private var course: String = ""
     @State private var director: String = ""
-    @State private var todaysEvents: [NSManagedObject] = []
-    @State private var tomorrowsEvents: [NSManagedObject] = []
-    @State private var upcomingExams: [NSManagedObject] = []
+    @State private var todaysEvents: [RaPlaEvent] = []
+    @State private var tomorrowsEvents: [RaPlaEvent] = []
+    @State private var upcomingExams: [RaPlaEvent] = []
     
     var body: some View {
         NavigationView {
@@ -115,25 +115,25 @@ struct HomeView: View {
 extension HomeView{
     // Read required data from CoreData and save it to the appropriate variables
     func readFromCoreData() {
-        let fetchedData = UtilityFunctions.getCoreDataObject(entity: "User")
+        let fetchedData = User.getAll()
         
         if(!fetchedData.isEmpty) {
             let user = fetchedData[0]
-            self.name = user.value(forKey: "name") as! String
-            self.course = user.value(forKey: "course") as! String
-            self.director = user.value(forKey: "director") as! String
+            self.name = user.name!
+            self.course = user.course!
+            self.director = user.director!
         }
     }
     
     // Get 0...2 of todays lectures from RaPla
     // Returns a list of RaPlaEvent NSManagedObjects
-    func getTodaysEvents() -> [NSManagedObject] {
+    func getTodaysEvents() -> [RaPlaEvent] {
         let searchPredicate = NSPredicate(format: "(category == 'Lehrveranstaltung')")
         let hiddenPredicate = NSPredicate(format: "isHidden == NO")
         var predicates = [searchPredicate, hiddenPredicate]
         predicates.append(contentsOf: getDayPredicates(today: true))
         let compoundPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: predicates)
-        let events = UtilityFunctions.getCoreDataObject(entity: "RaPlaEvent", searchPredicate: compoundPredicate)
+        let events = RaPlaEvent.getSpecified(searchPredicate: compoundPredicate)
         if(!events.isEmpty) {
             return Array(events[...min(1, events.count-1)])
         } else {
@@ -143,13 +143,13 @@ extension HomeView{
     
     // Get 0...2 of tomorrows lectures from RaPla
     // Returns a list of RaPlaEvent NSManagedObjects
-    func getTomorrowsEvents() -> [NSManagedObject] {
+    func getTomorrowsEvents() -> [RaPlaEvent] {
         let searchPredicate = NSPredicate(format: "(category == 'Lehrveranstaltung')")
         let hiddenPredicate = NSPredicate(format: "isHidden == NO")
         var predicates = [searchPredicate, hiddenPredicate]
         predicates.append(contentsOf: getDayPredicates(tomorrow: true))
         let compoundPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: predicates)
-        let events = UtilityFunctions.getCoreDataObject(entity: "RaPlaEvent", searchPredicate: compoundPredicate)
+        let events = RaPlaEvent.getSpecified(searchPredicate: compoundPredicate)
         if(!events.isEmpty) {
             return Array(events[...min(1, events.count-1)])
         } else {
@@ -159,13 +159,13 @@ extension HomeView{
     
     // Get 0...2 of upcoming exams from RaPla
     // Returns a list of RaPlaEvent NSManagedObjects
-    func getUpcomingExams() -> [NSManagedObject] {
+    func getUpcomingExams() -> [RaPlaEvent] {
         let searchPredicate = NSPredicate(format: "category == %@", "Prüfung")
         let hiddenPredicate = NSPredicate(format: "isHidden == NO")
         let compoundPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [searchPredicate, hiddenPredicate])
         let sectionSortDescriptor = NSSortDescriptor(key: "startDate", ascending: true)
         let sortDescriptors = [sectionSortDescriptor]
-        let events = UtilityFunctions.getCoreDataObject(entity: "RaPlaEvent", sortDescriptors: sortDescriptors, searchPredicate: compoundPredicate)
+        let events = RaPlaEvent.getSpecified(sortDescriptors: sortDescriptors, searchPredicate: compoundPredicate)
         if(!events.isEmpty) {
             return Array(events[...min(1, events.count-1)])
         } else {
@@ -222,7 +222,7 @@ extension HomeView{
 }
 
 struct UpcomingLecturesBlock: View {
-    let eventsList: [NSManagedObject]
+    let eventsList: [RaPlaEvent]
     let titleKey: String
     
     var body: some View {
@@ -233,7 +233,7 @@ struct UpcomingLecturesBlock: View {
             VStack {
                 if(!eventsList.isEmpty){
                     ForEach(eventsList, id: \.self) { exam in
-                        Text(exam.value(forKey: "summary") as! String)
+                        Text(exam.summary!)
                             .frame(maxWidth: .infinity, alignment: .leading)
                     }
                 } else {
@@ -251,7 +251,7 @@ struct UpcomingLecturesBlock: View {
 }
 
 struct UpcomingExamsBlock: View {
-    let examsList: [NSManagedObject]
+    let examsList: [RaPlaEvent]
     let titleKey: String
     
     var body: some View {
@@ -262,7 +262,7 @@ struct UpcomingExamsBlock: View {
             VStack {
                 if(!examsList.isEmpty){
                     ForEach(examsList, id: \.self) { exam in
-                        Text(exam.value(forKey: "summary") as! String)
+                        Text(exam.summary!)
                             .frame(maxWidth: .infinity, alignment: .leading)
                     }
                 } else {

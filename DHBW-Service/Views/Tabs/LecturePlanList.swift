@@ -9,7 +9,7 @@ import SwiftUI
 import CoreData
 
 struct LecturePlanList: View {
-    @State private var events: [NSManagedObject] = []
+    @State private var events: [RaPlaEvent] = []
     @State private var sortingAscending = true
     
     var body: some View {
@@ -18,14 +18,14 @@ struct LecturePlanList: View {
                 ForEach(events, id: \.self) { event in
                     NavigationLink(destination: LecturePlanItem(event: event)){
                         HStack {
-                            Text(formatDate(date: event.value(forKeyPath: "startDate") as! Date))
+                            Text(formatDate(date: event.startDate!))
                                 .foregroundColor(getEventForegroundColor(for: event))
-                            Text(event.value(forKeyPath: "summary") as! String)
+                            Text(event.summary!)
                                 .foregroundColor(getEventForegroundColor(for: event))
                             
                             Spacer()
                             
-                            if(event.value(forKey: "isHidden") as! Bool) {
+                            if(event.isHidden) {
                                 Image(systemName: "eye.slash")
                                     .foregroundColor(.red)
                             } else {
@@ -38,7 +38,7 @@ struct LecturePlanList: View {
                         let sectionSortDescriptor = NSSortDescriptor(key: "startDate", ascending: true)
                         let sortDescriptors = [sectionSortDescriptor]
                         self.events = []
-                        self.events = UtilityFunctions.getCoreDataObject(entity: "RaPlaEvent", sortDescriptors: sortDescriptors)
+                        self.events = RaPlaEvent.getSpecified(sortDescriptors: sortDescriptors)
                     })
                 }
             }
@@ -61,7 +61,7 @@ struct LecturePlanList: View {
             let sectionSortDescriptor = NSSortDescriptor(key: "startDate", ascending: true)
             let sortDescriptors = [sectionSortDescriptor]
             self.events = []
-            self.events = UtilityFunctions.getCoreDataObject(entity: "RaPlaEvent", sortDescriptors: sortDescriptors)
+            self.events = RaPlaEvent.getSpecified(sortDescriptors: sortDescriptors)
         }
     }
 }
@@ -89,9 +89,9 @@ extension LecturePlanList {
         return formatter.string(from: date)
     }
     
-    private func getEventForegroundColor(for event: NSManagedObject) -> Color {
+    private func getEventForegroundColor(for event: RaPlaEvent) -> Color {
         var textColor: Color = .primary
-        if(event.value(forKeyPath: "category") as! String == "Prüfung") {
+        if(event.category! == "Prüfung") {
             textColor = Color.red
         } else {
             textColor = Color.primary
