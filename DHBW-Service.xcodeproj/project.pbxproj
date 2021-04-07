@@ -27,6 +27,7 @@
 		CD9FABA3258EC60600D6D0C5 /* DHBW_ServiceUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9FABA2258EC60600D6D0C5 /* DHBW_ServiceUITests.swift */; };
 		CDA1CBAE25D4591000DB2AE5 /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA1CBA825D4591000DB2AE5 /* User+CoreDataProperties.swift */; };
 		CDA1CBB025D4591000DB2AE5 /* Lecturer+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA1CBAA25D4591000DB2AE5 /* Lecturer+CoreDataProperties.swift */; };
+		CDB1E947261DDA0200EDE9EB /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB1E946261DDA0200EDE9EB /* DateExtension.swift */; };
 		CDCD721A25912E1200FBF2F5 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCD721925912E1200FBF2F5 /* HomeView.swift */; };
 		CDCD72242591316500FBF2F5 /* LocalSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCD72232591316500FBF2F5 /* LocalSettings.swift */; };
 		CDCD7230259135C500FBF2F5 /* FirstOpeningSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCD722F259135C500FBF2F5 /* FirstOpeningSettings.swift */; };
@@ -70,7 +71,6 @@
 		CD730A34259A860E00E0BB69 /* SettingsAcknowledgements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsAcknowledgements.swift; sourceTree = "<group>"; };
 		CD8555BD25C47AE500C4ACD6 /* RaPlaFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RaPlaFetcher.swift; sourceTree = "<group>"; };
 		CD8555C225C47B5300C4ACD6 /* ApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
-		CD9E3F0A25DC3C9A00C77D10 /* DHBW-Service.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "DHBW-Service.entitlements"; sourceTree = "<group>"; };
 		CD9E3F0E25DC466100C77D10 /* SettingsPushNotifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPushNotifications.swift; sourceTree = "<group>"; };
 		CD9FAB7D258EC60200D6D0C5 /* DHBW-Service.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "DHBW-Service.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD9FAB80258EC60200D6D0C5 /* DHBW_ServiceApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DHBW_ServiceApp.swift; sourceTree = "<group>"; };
@@ -88,6 +88,7 @@
 		CD9FABA4258EC60600D6D0C5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CDA1CBA825D4591000DB2AE5 /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "User+CoreDataProperties.swift"; path = "DHBW-Service/CoreData/Models/User+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
 		CDA1CBAA25D4591000DB2AE5 /* Lecturer+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Lecturer+CoreDataProperties.swift"; path = "DHBW-Service/CoreData/Models/Lecturer+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
+		CDB1E946261DDA0200EDE9EB /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
 		CDCD721925912E1200FBF2F5 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		CDCD72232591316500FBF2F5 /* LocalSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalSettings.swift; sourceTree = "<group>"; };
 		CDCD722F259135C500FBF2F5 /* FirstOpeningSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstOpeningSettings.swift; sourceTree = "<group>"; };
@@ -210,7 +211,6 @@
 		CD9FAB7F258EC60200D6D0C5 /* DHBW-Service */ = {
 			isa = PBXGroup;
 			children = (
-				CD9E3F0A25DC3C9A00C77D10 /* DHBW-Service.entitlements */,
 				CDCD720F25912D3C00FBF2F5 /* App */,
 				CDCD721025912D4900FBF2F5 /* Views */,
 				CDDCF4792591FE410027CDC5 /* Utility */,
@@ -321,6 +321,7 @@
 				CDDCF47A2591FE550027CDC5 /* UtilityFunctions.swift */,
 				CD8555BD25C47AE500C4ACD6 /* RaPlaFetcher.swift */,
 				CD8555C225C47B5300C4ACD6 /* ApiService.swift */,
+				CDB1E946261DDA0200EDE9EB /* DateExtension.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -487,6 +488,7 @@
 				CD8555BE25C47AE500C4ACD6 /* RaPlaFetcher.swift in Sources */,
 				CDEA70C025C85999001CFE28 /* LecturePlanItem.swift in Sources */,
 				CD8555C325C47B5300C4ACD6 /* ApiService.swift in Sources */,
+				CDB1E947261DDA0200EDE9EB /* DateExtension.swift in Sources */,
 				CD9FAB8D258EC60600D6D0C5 /* DHBW_Service.xcdatamodeld in Sources */,
 				CDCD721A25912E1200FBF2F5 /* HomeView.swift in Sources */,
 				CDD39B4B259A64150078D05F /* SettingsMain.swift in Sources */,
@@ -683,9 +685,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = "DHBW-Service/DHBW-Service.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.0.1;
+				CURRENT_PROJECT_VERSION = 1.0.2;
 				DEVELOPMENT_ASSET_PATHS = "\"DHBW-Service/Preview Content\"";
 				DEVELOPMENT_TEAM = HS7KNT4MZ2;
 				ENABLE_PREVIEWS = YES;
@@ -707,9 +708,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = "DHBW-Service/DHBW-Service.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.0.1;
+				CURRENT_PROJECT_VERSION = 1.0.2;
 				DEVELOPMENT_ASSET_PATHS = "\"DHBW-Service/Preview Content\"";
 				DEVELOPMENT_TEAM = HS7KNT4MZ2;
 				ENABLE_PREVIEWS = YES;

@@ -264,6 +264,8 @@ class RaPlaFetcher {
                         print("Found unknown frequency: " + event.frequency)
                     }
                     
+                    // (offsetAmount * iteration) because for the 1st event, we dont want to add an offset, and
+                    // for every event after that we want to add e.g. 1 week, 2 weeks, 3 weeks etc.
                     let startDate = Calendar.current.date(byAdding: offsetType, value: (offsetAmount * iteration), to: event.startDate)!
                     let endDate = Calendar.current.date(byAdding: offsetType, value: (offsetAmount * iteration), to: event.endDate)!
                     
@@ -288,8 +290,6 @@ class RaPlaFetcher {
                     }
                     
                     // Populate fields
-                    // (offsetAmount * iteration) because for the 1st event, we dont want to add an offset, and
-                    // for every event after that we want to add e.g. 1 week, 2 weeks, 3 weeks etc.
                     evt.startDate = startDate
                     evt.endDate = endDate
                     evt.summary = event.summary
@@ -298,6 +298,8 @@ class RaPlaFetcher {
                     evt.category = event.category
                     evt.uid = newUID
                     for lecturer in event.lecturers {
+                        // TODO: Delete all old lecturer objects
+                        
                         let lect = Lecturer(context: PersistenceController.shared.context)
                         lect.name = lecturer.name
                         lect.email = lecturer.email
