@@ -10,14 +10,21 @@ import CoreData
 
 class RaPlaFetcher {
     public class iCalEvent {
-        var startDate: Date = Date()    //DTSTART
-        var endDate: Date = Date()      //DTEND
-        var summary: String = ""        //SUMMARY
-        var description: String = ""    //DESCRIPTION
-        var location: String = ""       //LOCATION
-        var category: String = ""       //CATEGORIES
-        var uid: String = ""            //UID
-        var lecturers: [LecturerObj] = []  //ATTENDEE
+        var startDate: Date = Date()    // DTSTART
+        var endDate: Date = Date()      // DTEND
+        var summary: String = ""        // SUMMARY
+        var description: String = ""    // DESCRIPTION
+        var location: String = ""       // LOCATION
+        var category: String = ""       // CATEGORIES
+        var uid: String = ""            // UID
+        var lecturers: [LecturerObj] = []  // ATTENDEE
+        var excludedDates: [Date] = []  // EXDATE
+        var isRecurring: Bool = false   // If the event is recurring
+        var frequency: String = ""      // Frequence in case of recurring events, e.g. DAILY or WEEKLY
+        var recCount: Int = 0           // How often the event occurs in case of recurring events
+        var recInterval: Int = 0        // Interval of the recurring event, e.g. 1 for every week / day / ...
+        var recDay: String = ""         // The day of the recurrence, e.g. FR for friday
+        var recUntil: Date = Date()     // Until when the event has to be repeated
     }
     
     public class LecturerObj {
@@ -84,7 +91,14 @@ class RaPlaFetcher {
             for lineNr in 0...lines.count-1 {
                 if(lines[lineNr].hasPrefix(" ")){
                     lines[lineNr] = String(lines[lineNr].dropFirst())
-                    lines[lineNr-1].append(lines[lineNr])
+                    
+                    // If there are more than 2 lines that have to be merged, we need to find out how many lines we have to go up
+                    var goUp = 1
+                    while(lines[lineNr-goUp] == ""){
+                        goUp += 1
+                    }
+                    
+                    lines[lineNr-goUp].append(lines[lineNr])
                     lines[lineNr] = ""
                 }
             }
@@ -144,6 +158,57 @@ class RaPlaFetcher {
                     lecturer.email = lecturerEmail
                     
                     evt.lecturers.append(lecturer)
+                } else if(line.hasPrefix("RRULE")) {
+                    // This line normally looks like this:  RRULE:FREQ=WEEKLY;COUNT=12;INTERVAL=1;BYDAY=TU
+                    // Can also look smth like this though: RRULE:FREQ=WEEKLY;COUNT=12
+                    
+                    evt.isRecurring = true
+                    
+                    let params = lineWithoutPrefix.components(separatedBy: ";")
+                    
+                    for param in params {
+                        let keyword = param[param.startIndex..<param.firstIndex(of: "=")!]
+                        let value = param[param.index(param.firstIndex(of: "=")!, offsetBy: 1)..<param.endIndex]
+                        
+                        switch keyword {
+                        case "FREQ":
+                            evt.frequency = String(value)
+                            break
+                        case "COUNT":
+                            evt.recCount = Int(value)!
+                            break
+                        case "INTERVAL":
+                            evt.recInterval = Int(value)!
+                            break
+                        case "BYDAY":
+                            evt.recDay = String(value)
+                            break
+                        case "UNTIL":
+                            let dateFormatter = DateFormatter()
+                            dateFormatter.dateFormat = "yyyyMMdd"
+                            let date = dateFormatter.date(from: String(value))!
+                            evt.recUntil = date
+                            break
+                        default:
+                            print("Unknown parameter found: " + line)
+                        }
+                    }
+                } else if (line.hasPrefix("EXDATE")) {
+                    // Excluded from recurring events
+                    // Format: 20210401T133000,20210408T133000,20210513T133000
+                    
+                    let exclDateStrings = lineWithoutPrefix.components(separatedBy: ",")
+                    
+                    for exclDate in exclDateStrings {
+                        let dateFormatter = DateFormatter()
+                        if(lineWithoutPrefix.contains("Z")){
+                            dateFormatter.dateFormat = "yyyyMMdd'T'HHmmss'Z'"
+                        } else {
+                            dateFormatter.dateFormat = "yyyyMMdd'T'HHmmss"
+                        }
+                        let date = dateFormatter.date(from: exclDate)!
+                        evt.excludedDates.append(date)
+                    }
                 }
             }
             
@@ -156,36 +221,124 @@ class RaPlaFetcher {
     // Save the given iCalEvent objects to CoreData
     // Updates the events if they already exist and deletes old (/invalid) ones
     private class func saveToCoreData(eventObjects: [iCalEvent]) -> Bool{
+        // Get known UIDs
         let existingEvents: [RaPlaEvent] = RaPlaEvent.getAll()
         var existingEventsDict: [String:RaPlaEvent] = [:]
         for event in existingEvents {
             existingEventsDict[event.uid!] = event
         }
-        let newEventUIDs = eventObjects.map{$0.uid}
+        // List for new UIDs
+        var newEventUIDs: [String] = []
         
         for event in eventObjects {
             // If the event already exists locally, update it. Otherwise, create a new record
-            let evt: RaPlaEvent
-            if existingEventsDict.keys.contains(event.uid) {
-                evt = existingEventsDict[event.uid]!
+            if(event.isRecurring){
+                // Create as many events as we need
+                // If we e.g. need 12 events, we create 0...11
+                for iteration in 0..<event.recCount {
+                    // Calculate start- and enddate
+                    // Calculate offset
+                    let offsetType: Calendar.Component
+                    let offsetAmount: Int
+                    
+                    switch event.frequency {
+                    case "DAILY":
+                        offsetType = Calendar.Component.day
+                        offsetAmount = 1
+                        break
+                    case "WEEKLY":
+                        offsetType = Calendar.Component.day
+                        offsetAmount = 7
+                        break
+                    case "MONTHLY":
+                        offsetType = Calendar.Component.month
+                        offsetAmount = 1
+                        break
+                    case "YEARLY":
+                        offsetType = Calendar.Component.year
+                        offsetAmount = 1
+                        break
+                    default:
+                        offsetType = Calendar.Component.day
+                        offsetAmount = 0
+                        print("Found unknown frequency: " + event.frequency)
+                    }
+                    
+                    let startDate = Calendar.current.date(byAdding: offsetType, value: (offsetAmount * iteration), to: event.startDate)!
+                    let endDate = Calendar.current.date(byAdding: offsetType, value: (offsetAmount * iteration), to: event.endDate)!
+                    
+                    // Check if this recurrence should be excluded
+                    if(event.excludedDates.contains(startDate)){
+                        continue
+                    }
+                    
+                    // Generate UID
+                    // Appending iteration to distinguish between recurring events
+                    let newUID = event.uid + "---" + String(iteration)
+                    
+                    // Create or update existing CoreData object
+                    let evt: RaPlaEvent
+                    if existingEventsDict.keys.contains(newUID) {
+                        evt = existingEventsDict[newUID]!
+                    } else {
+                        evt = RaPlaEvent(context: PersistenceController.shared.context)
+                        
+                        // Set default values for new object
+                        evt.isHidden = false
+                    }
+                    
+                    // Populate fields
+                    // (offsetAmount * iteration) because for the 1st event, we dont want to add an offset, and
+                    // for every event after that we want to add e.g. 1 week, 2 weeks, 3 weeks etc.
+                    evt.startDate = startDate
+                    evt.endDate = endDate
+                    evt.summary = event.summary
+                    evt.descr = event.description
+                    evt.location = event.location
+                    evt.category = event.category
+                    evt.uid = newUID
+                    for lecturer in event.lecturers {
+                        let lect = Lecturer(context: PersistenceController.shared.context)
+                        lect.name = lecturer.name
+                        lect.email = lecturer.email
+                        lect.event = evt
+                    }
+                    
+                    // Add UID to new UIDs list
+                    newEventUIDs.append(newUID)
+                }
             } else {
-                evt = RaPlaEvent(context: PersistenceController.shared.context)
+                // Generate UID
+                let newUID = event.uid + "---0"  // Appending ---0 to distinguish between recurring events
                 
-                // Set default values for new object
-                evt.isHidden = false
-            }
-            evt.startDate = event.startDate
-            evt.endDate = event.endDate
-            evt.summary = event.summary
-            evt.descr = event.description
-            evt.location = event.location
-            evt.category = event.category
-            evt.uid = event.uid
-            for lecturer in event.lecturers {
-                let lect = Lecturer(context: PersistenceController.shared.context)
-                lect.name = lecturer.name
-                lect.email = lecturer.email
-                lect.event = evt
+                // Create or update existing CoreData object
+                let evt: RaPlaEvent
+                if existingEventsDict.keys.contains(newUID) {
+                    evt = existingEventsDict[newUID]!
+                } else {
+                    evt = RaPlaEvent(context: PersistenceController.shared.context)
+                    
+                    // Set default values for new object
+                    evt.isHidden = false
+                }
+                
+                // Populate fields
+                evt.startDate = event.startDate
+                evt.endDate = event.endDate
+                evt.summary = event.summary
+                evt.descr = event.description
+                evt.location = event.location
+                evt.category = event.category
+                evt.uid = newUID
+                for lecturer in event.lecturers {
+                    let lect = Lecturer(context: PersistenceController.shared.context)
+                    lect.name = lecturer.name
+                    lect.email = lecturer.email
+                    lect.event = evt
+                }
+                
+                // Add UID to new UIDs list
+                newEventUIDs.append(newUID)
             }
         }
         

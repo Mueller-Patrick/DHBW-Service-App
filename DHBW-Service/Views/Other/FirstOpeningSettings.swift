@@ -11,8 +11,10 @@ import CoreData
 struct FirstOpeningSettings: View {
     @EnvironmentObject var settings: LocalSettings
     @State private var name = ""
+    @State private var dhbwLocation = ""
     @State private var course = ""
     @State private var director = ""
+    @State private var raplaLink = ""
     @State private var invalidInputName = false
     @State private var invalidInputCourse = false
     
@@ -28,10 +30,18 @@ struct FirstOpeningSettings: View {
                 .frame(minWidth: 200, idealWidth: nil, maxWidth: 500, minHeight: nil, idealHeight: nil, maxHeight: nil, alignment: .center)
                 .padding(.horizontal)
             
+            Picker(selection: self.$dhbwLocation, label: Text("Location")){
+                Text("Karlsruhe")
+                Text("Mannheim")
+                Text("Stuttgart")
+                Text("Mosbach")
+            }.frame(maxWidth: 500, alignment: .center)
+            .pickerStyle(SegmentedPickerStyle())
+            
             TextField("course".localized(tableName: "General"), text: self.$course)
                 .overlay(RoundedRectangle(cornerRadius: 10).stroke(invalidInputCourse ? Color.red : Color.secondary, lineWidth: 1))
                 .onChange(of: course, perform: { value in
-                    self.setDirector()
+                    self.setCourseInfo()
                     self.course = self.course.uppercased()
                 })
                 .foregroundColor(invalidInputCourse ? .red : .primary)
@@ -65,11 +75,13 @@ struct FirstOpeningSettings: View {
 }
 
 extension FirstOpeningSettings{
-    func setDirector() {
-        if (course == "TINF19B4") {
-            director = "Jörn Eisenbiegler"
-        } else {
-            director = ""
+    func setCourseInfo() {
+        // TODO: Replace this with some database query or stuff like this to load actual data
+        switch course {
+            case "TINF19B4":
+                director = "Jörn Eisenbiegler"
+            default:
+                director = ""
         }
     }
     

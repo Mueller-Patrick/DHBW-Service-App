@@ -20,14 +20,20 @@
 				<false/>
 			</dict>
 		</dict>
-		<key>CFBundlePrimaryIcon</key>
+	</dict>
+	<key>CFBundleIcons~ipad</key>
+	<dict>
+		<key>CFBundleAlternateIcons</key>
 		<dict>
-			<key>CFBundleIconFiles</key>
-			<array>
-				<string>dhbw-standard-icon</string>
-			</array>
-			<key>UIPrerenderedIcon</key>
-			<false/>
+			<key>Alpaca-Alt-Icon</key>
+			<dict>
+				<key>CFBundleIconFiles</key>
+				<array>
+					<string>alpaca-alt-icon</string>
+				</array>
+				<key>UIPrerenderedIcon</key>
+				<false/>
+			</dict>
 		</dict>
 	</dict>
 	<key>CFBundleIdentifier</key>
@@ -41,7 +47,9 @@
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>$(CURRENT_PROJECT_VERSION)</string>
+	<key>ITSAppUsesNonExemptEncryption</key>
+	<false/>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>UIApplicationSceneManifest</key>

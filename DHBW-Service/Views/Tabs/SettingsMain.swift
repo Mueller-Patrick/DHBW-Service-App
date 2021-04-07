@@ -20,6 +20,11 @@ struct SettingsMain: View {
                         label: {
                             Text("Acknowledgements")
                         })
+                    NavigationLink(
+                        destination: SettingsPushNotifications(),
+                        label: {
+                            Text("Push Notifications")
+                        })
                     Button(action: {
                         self.showLogoutConfirmationAlert = true
                     }, label: {
