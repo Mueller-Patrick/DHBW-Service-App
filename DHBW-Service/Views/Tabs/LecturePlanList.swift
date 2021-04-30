@@ -7,11 +7,13 @@
 
 import SwiftUI
 import CoreData
+import Combine
 
 struct LecturePlanList: View {
     @State private var events: [RaPlaEvent] = []
     @State private var daysWithEvents: [Date:[RaPlaEvent]] = [:]
     @State private var sortingAscending = true
+    
     
     var body: some View {
         NavigationView() {
@@ -25,11 +27,12 @@ struct LecturePlanList: View {
 //                    .padding()
                     
                     ForEach(daysWithEvents.sorted(by: {$0.key < $1.key}), id: \.key) { key, value in
-                        let dayBlock = DayWithEventsBlock(date: key, eventsList: value, parent: self)
-                        dayBlock
+                        HStack {
+                            Spacer()
+                            DayWithEventsBlock(date: key, eventsList: value, parent: self)
+                            Spacer()
+                        }
                     }
-                    
-                    
                 }
             }
             .navigationBarTitle(Text("Lectures"))
@@ -77,6 +80,15 @@ extension LecturePlanList {
         return formatter.string(from: date)
     }
     
+    public func formatTime(date: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.timeStyle = .short
+        return formatter.string(from: date)
+    }
+    
+    /**
+     Get the correct foreground color for the given event, e.g. primary for normal events and red for exams.
+     */
     public func getEventForegroundColor(for event: RaPlaEvent) -> Color {
         var textColor: Color = .primary
         if(event.category! == "Prüfung") {
@@ -88,6 +100,9 @@ extension LecturePlanList {
         return textColor
     }
     
+    /**
+     DEPRECATED, used to find the element in the list of days that represents the next day
+     */
     public func findNextDay() {
         // As this list is already sorted ascending, we can just return the first event with a start date that is in the future
         let sortedEvents = self.events.sorted(by: { $0.startDate! < $1.startDate! })
@@ -99,6 +114,9 @@ extension LecturePlanList {
         }
     }
     
+    /**
+     Loads required data from CoreData
+     */
     public func getRaPlaEvents() {
         let sectionSortDescriptor = NSSortDescriptor(key: "startDate", ascending: true)
         let sortDescriptors = [sectionSortDescriptor]
@@ -130,8 +148,15 @@ extension LecturePlanList {
             self.daysWithEvents[dayOnly] = eventsList
         }
     }
+    
+    public func updateDay(day: Date, events: [RaPlaEvent]) {
+        self.daysWithEvents[day] = events
+    }
 }
 
+/**
+ Each of these represents one day block in the view
+ */
 struct DayWithEventsBlock: View {
     @State var date: Date
     @State var eventsList: [RaPlaEvent]
@@ -146,21 +171,29 @@ struct DayWithEventsBlock: View {
             VStack {
                 if(!eventsList.isEmpty){
                     ForEach(eventsList, id: \.self) { event in
-                        NavigationLink(destination: LecturePlanItem(event: event)) {
-                            HStack {
-                                Text(parent.formatDate(date: event.startDate!))
-                                    .foregroundColor(parent.getEventForegroundColor(for: event))
-                                Text(event.summary!)
-                                    .foregroundColor(parent.getEventForegroundColor(for: event))
-
-                                Spacer()
-
+                        var visibleIconGroup = Group {
+                            Button(action: {
+                                event.isHidden.toggle()
+                            }){
                                 if(event.isHidden) {
                                     Image(systemName: "eye.slash")
                                         .foregroundColor(.red)
                                 } else {
                                     Image(systemName: "eye")
                                 }
+                            }
+                        }
+                        
+                        NavigationLink(destination: LecturePlanItem(event: event)) {
+                            HStack {
+                                Text(parent.formatTime(date: event.startDate!))
+                                    .foregroundColor(parent.getEventForegroundColor(for: event))
+                                Text(event.summary!)
+                                    .foregroundColor(parent.getEventForegroundColor(for: event))
+
+                                Spacer()
+                                
+                                visibleIconGroup
                             }
                             .padding()
                             .background(
@@ -170,8 +203,20 @@ struct DayWithEventsBlock: View {
                         }
                         // When an event gets updated from child view, reload it here as this will not trigger the onAppear() function
                         .onReceive(event.objectWillChange, perform: { _ in
-                            print("receiving event")
-                            parent.getRaPlaEvents()
+                            print("receiving event: \(event.isHidden)")
+                            visibleIconGroup = Group {
+                                Button(action: {
+                                    event.isHidden.toggle()
+                                }){
+                                    if(event.isHidden) {
+                                        Image(systemName: "eye.slash")
+                                            .foregroundColor(.red)
+                                    } else {
+                                        Image(systemName: "eye")
+                                    }
+                                }
+                            }
+//                            parent.updateDay(day: self.date, events: self.eventsList)
                         })
                     }
                 } else {

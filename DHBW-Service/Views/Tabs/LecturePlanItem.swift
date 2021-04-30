@@ -46,7 +46,6 @@ struct LecturePlanItem: View {
                         Button(action: {
                             event.isHidden = !isHidden
                             self.isHidden = !isHidden
-                            PersistenceController.shared.save()
                         }){
                             if(self.isHidden){
                                 Text("Show")
@@ -73,6 +72,9 @@ struct LecturePlanItem: View {
         }
         .onAppear{
             self.isHidden = event.isHidden
+        }
+        .onDisappear{
+            PersistenceController.shared.save()
         }
     }
 }
