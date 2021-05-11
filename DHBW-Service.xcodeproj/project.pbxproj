@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		42560FA0264AB7E40062053B /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42560F9F264AB7E40062053B /* ColorExtension.swift */; };
 		CD17FAD025C9F93B0088D700 /* HomeView.strings in Resources */ = {isa = PBXBuildFile; fileRef = CD17FAD225C9F93B0088D700 /* HomeView.strings */; };
 		CD2FC0C525A869FE00963178 /* dhbw-standard-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD2FC0C025A869FE00963178 /* dhbw-standard-icon@2x.png */; };
 		CD2FC0C625A869FE00963178 /* dhbw-standard-icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD2FC0C125A869FE00963178 /* dhbw-standard-icon@3x.png */; };
@@ -61,6 +62,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		42560F9F264AB7E40062053B /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
 		CD17FAD125C9F93B0088D700 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/HomeView.strings; sourceTree = "<group>"; };
 		CD17FAD625C9F9440088D700 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/HomeView.strings; sourceTree = "<group>"; };
 		CD2FC0C025A869FE00963178 /* dhbw-standard-icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dhbw-standard-icon@2x.png"; sourceTree = "<group>"; };
@@ -322,6 +324,7 @@
 				CD8555BD25C47AE500C4ACD6 /* RaPlaFetcher.swift */,
 				CD8555C225C47B5300C4ACD6 /* ApiService.swift */,
 				CDB1E946261DDA0200EDE9EB /* DateExtension.swift */,
+				42560F9F264AB7E40062053B /* ColorExtension.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -477,6 +480,7 @@
 				CDDCF4842592028A0027CDC5 /* Localizer.swift in Sources */,
 				CDD970DF25D453D90061755E /* Lecturer+CoreDataClass.swift in Sources */,
 				CDCD7230259135C500FBF2F5 /* FirstOpeningSettings.swift in Sources */,
+				42560FA0264AB7E40062053B /* ColorExtension.swift in Sources */,
 				CDA1CBB025D4591000DB2AE5 /* Lecturer+CoreDataProperties.swift in Sources */,
 				CD9FAB8A258EC60600D6D0C5 /* Persistence.swift in Sources */,
 				CD730A35259A860E00E0BB69 /* SettingsAcknowledgements.swift in Sources */,
