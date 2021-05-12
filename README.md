@@ -1,7 +1,7 @@
 # DHBW-Service-App
 
 ## Introduction
-This is a project by two students of the Cooperative State University in Karlsruhe (DHBW Karlsruhe).
+This is a project by three students of the Cooperative State University in Karlsruhe (DHBW Karlsruhe).
 The goal is to develop a native iOS app providing easy and straightforward access to services like RaPla, Dualis and the canteen plan.
 
 <b>Disclaimer:</b> This project is not affiliated with the DHBW Karlsruhe
