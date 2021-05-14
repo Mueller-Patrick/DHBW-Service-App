@@ -13,8 +13,9 @@ struct SettingsAcknowledgements: View {
             Text("contributors".localized(tableName: "General", plural: false))
                 .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
             Spacer()
-            Text("David Huh")
-            Text("Patrick Müller")
+            Text("David Huh (davidhuh.de)")
+            Text("Lisa Kletsko (li54.de)")
+            Text("Patrick Müller (mueller-patrick.tech)")
             Spacer()
         }
     }
