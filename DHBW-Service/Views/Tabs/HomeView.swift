@@ -33,7 +33,7 @@ struct HomeView: View {
                     .padding()
                     .background(
                         RoundedRectangle(cornerRadius: 10)
-                            .fill(Color.gray)
+                            .fill(Color.darkModePrimaryColor)
                     )
                     Spacer()
                 }
@@ -41,7 +41,8 @@ struct HomeView: View {
                     Spacer()
                     VStack {
                         Text("information".localized(tableName: "HomeView", plural: false))
-                            .font(.title3)
+                            .font(.headline)
+                            .fontWeight(.semibold)
                             .frame(maxWidth: .infinity, alignment: .leading)
                         HStack {
                             VStack(alignment: .leading) {
@@ -59,7 +60,7 @@ struct HomeView: View {
                     .padding()
                     .background(
                         RoundedRectangle(cornerRadius: 10)
-                            .fill(Color.gray)
+                            .fill(Color.darkModePrimaryColor)
                     )
                     Spacer()
                 }
@@ -228,7 +229,8 @@ struct UpcomingLecturesBlock: View {
     var body: some View {
         VStack {
             Text(titleKey.localized(tableName: "HomeView"))
-                .font(.title)
+                .font(.title2)
+                .fontWeight(.semibold)
                 .frame(maxWidth: .infinity, alignment: .leading)
             VStack {
                 if(!eventsList.isEmpty){
@@ -245,7 +247,7 @@ struct UpcomingLecturesBlock: View {
         .padding()
         .background(
             RoundedRectangle(cornerRadius: 10)
-                .fill(Color.gray)
+                .fill(Color.darkModePrimaryColor)
         )
     }
 }
@@ -274,11 +276,11 @@ struct UpcomingExamsBlock: View {
         .padding()
         .background(
             RoundedRectangle(cornerRadius: 10)
-                .fill(Color.gray)
+                .fill(Color.darkModePrimaryColor)
         )
         .overlay(
             RoundedRectangle(cornerRadius: 10)
-                .stroke(Color.red, lineWidth: 4)
+                .stroke(Color("AccentColor"), lineWidth: 4)
         )
     }
 }
