@@ -33,7 +33,7 @@ struct HomeView: View {
                     .padding()
                     .background(
                         RoundedRectangle(cornerRadius: 10)
-                            .fill(Color.darkModePrimaryColor)
+                            .fill(Color.primaryColor)
                     )
                     Spacer()
                 }
@@ -60,7 +60,7 @@ struct HomeView: View {
                     .padding()
                     .background(
                         RoundedRectangle(cornerRadius: 10)
-                            .fill(Color.darkModePrimaryColor)
+                            .fill(Color.primaryColor)
                     )
                     Spacer()
                 }
@@ -247,7 +247,7 @@ struct UpcomingLecturesBlock: View {
         .padding()
         .background(
             RoundedRectangle(cornerRadius: 10)
-                .fill(Color.darkModePrimaryColor)
+                .fill(Color.primaryColor)
         )
     }
 }
@@ -276,7 +276,7 @@ struct UpcomingExamsBlock: View {
         .padding()
         .background(
             RoundedRectangle(cornerRadius: 10)
-                .fill(Color.darkModePrimaryColor)
+                .fill(Color.primaryColor)
         )
         .overlay(
             RoundedRectangle(cornerRadius: 10)

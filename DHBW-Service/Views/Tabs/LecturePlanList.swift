@@ -198,7 +198,7 @@ struct DayWithEventsBlock: View {
                             .padding()
                             .background(
                                 RoundedRectangle(cornerRadius: 10)
-                                    .fill(Color(#colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)))
+                                    .fill(Color.darkColor)
                             )
                         }
                         // When an event gets updated from child view, reload it here as this will not trigger the onAppear() function
@@ -228,7 +228,7 @@ struct DayWithEventsBlock: View {
         .padding()
         .background(
             RoundedRectangle(cornerRadius: 10)
-                .fill(Color.gray)
+                .fill(Color.primaryColor)
         )
     }
 }

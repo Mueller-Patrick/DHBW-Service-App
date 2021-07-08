@@ -54,7 +54,7 @@ struct LecturePlanItem: View {
                             }
                         }
                         .padding()
-                        .foregroundColor(.white)
+                        .foregroundColor(.primary)
                         .background(Color.blue)
                         .cornerRadius(15)
                         Spacer()
@@ -63,7 +63,7 @@ struct LecturePlanItem: View {
                 .padding()
                 .background(
                     RoundedRectangle(cornerRadius: 10)
-                        .fill(Color.gray)
+                        .fill(Color.primaryColor)
                 )
                 Spacer()
             }
